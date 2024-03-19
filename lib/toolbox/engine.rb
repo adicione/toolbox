@@ -1,6 +1,7 @@
 module Toolbox
   class Engine < ::Rails::Engine
     PRECOMPILE_ASSETS = %w(
+      coiso.js
       controllers/hello_toolbox_controller.js
     ).freeze
 
