@@ -1,19 +1,24 @@
 module Toolbox
   class Engine < ::Rails::Engine
-    PRECOMPILE_ASSETS = %w(
-      coiso.js
-      controllers/hello_toolbox_controller.js
-    ).freeze
+    initializer "stimulus.assets" do |app|
+      if app.config.respond_to?(:assets)
+        # Adds "app/javascript" to the paths used to search for assets.
+        app.config.assets.paths << root.join("app", "javascript")
 
-    initializer "stimulus.assets" do
-      if Rails.application.config.respond_to?(:assets)
-        Rails.application.config.assets.precompile += PRECOMPILE_ASSETS
+        # Precompiles additional assets.
+        app.config.assets.precompile += %w(
+          controllers/hello_toolbox_controller.js
+          concerns/helpers.js
+        ).freeze
       end
     end
 
     initializer "toolbox.importmap", before: "importmap" do |app|
+      # Engines own importmap.
       app.config.importmap.paths << Engine.root.join("config/importmap.rb")
-      app.config.importmap.cache_sweepers << Engine.root.join("app/assets/javascripts/toolbox")
+
+      # Sweeps the cache when any files in the engine change.
+      app.config.importmap.cache_sweepers << Engine.root.join("app/javascript")
     end
   end
 end
