@@ -24,7 +24,7 @@ TODO: Write usage instructions here
 
 Create app/views/new.html.erb containing:
 
-    $ login_form()
+    login_form()
 
 Edit app/config/routes.rb in order to add the folowing setup:
 
