@@ -20,6 +20,25 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 TODO: Write usage instructions here
 
+## Turnstile recaptcha setup
+
+Create app/views/new.html.erb containing:
+
+    $ login_form()
+
+Edit app/config/routes.rb in order to add the folowing setup:
+
+    $ scope module: :sessions do
+    $   get :login, action: :new, as: :login
+    $   post :login, action: :create, as: :create_session
+    $   get :logout, action: :destroy, as: :logout
+    $ end
+
+This will add the "login_path", "logout_path" and "create_session_path" to the routes.
+
+
+As default, it will use "login" and "Login..." as placeholder with a "create_session_path" as the URL. With the following parameter
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
