@@ -9,6 +9,7 @@ module Toolbox
         app.config.assets.precompile += %w(
           controllers/hello_toolbox_controller.js
           controllers/mask_controller.js
+          controllers/recaptcha_controller.js
           concerns/helpers.js
         ).freeze
       end

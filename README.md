@@ -18,6 +18,30 @@ The available masks are date `date-mask`, phone `phone-mask`, cpf `cpf-mask`, cn
 
 Create `app/views/new.html.erb` containing:
 
+    <div id="main-login-wrap">
+        <div id="main-login-modal" data-controller="recaptcha" data-sitekey="0x4AAAAAAADSnPLVRXOUi1Iz">
+            <div id="recaptcha" data-recaptcha-target="recaptcha"></div>
+
+            <div data-recaptcha-target="reloadMessage" hidden>
+                <p>Sua autenticação expirou, retornou com erro ou você está tentando algo feio!</p>
+
+                <%= link_to "Tentar novamente", "", class: "btn" %>
+            </div>
+
+            <%= form_with url: create_session_path, data: { turbo: false, recaptcha_target: "loginForm", action: "recaptcha#validate", controller: "mask" }, html: { hidden: true } do |f| %>
+                <%= f.hidden_field(:recaptcha_token, data: { recaptcha_target: "recaptchaToken" }) %>
+                <%= f.text_field :login, value: params[:login], placeholder: "Login...", autofocus: :true, data: { recaptcha_target: "loginField", action: "recaptcha#toggleSubmitButton" } %>
+                <%= f.password_field :password, value: nil, placeholder: "Senha de acesso...", data: { recaptcha_target: "passwordField", action: "recaptcha#toggleSubmitButton" } %>
+                <%= f.submit "Entrar", class: "btn", disabled: true, hidden: true, data: { recaptcha_target: "submitButton" } %>
+            <% end %>
+        </div>
+    </div>
+
+Replace the `data-sitekey` with the one setup at CloudFlare't turstile page, or use one of the test available sitekeys.
+
+    2x00000000000000000000AB // Fake fails.
+    3x00000000000000000000FF // Force interactive.
+
 Add the following paths to `app/config/routes.rb`, this will add the `login_path`, `logout_path` and `create_session_path` to the routes.
 
     scope module: :sessions do
@@ -25,6 +49,19 @@ Add the following paths to `app/config/routes.rb`, this will add the `login_path
       post :login, action: :create, as: :create_session
       get :logout, action: :destroy, as: :logout
     end
+
+Recaptcha uses rails secret file to store credentials.
+
+    $ EDITOR="code --wait" rails credentials:edit --environment development
+
+The file should at least look like this:
+
+    recaptcha:
+        secret: secretsitekeyhere
+
+And the posted `params[:recaptcha_token]` can be checked by `verify_recaptcha` method available upon adding the following into your controller:
+
+    include Pundit::Authorization
 
 ## Superstyles
 
