@@ -1,0 +1,44 @@
+body { margin: 2rem 2rem 0 2rem; }
+
+// Creates a multiple columns layout.
+
+.row {
+  width: 100%;
+  display: inline-flex;
+  flex-wrap: wrap;
+
+  .column {
+    margin-right: 2rem;
+    flex: 1;
+    min-width: 42rem;
+  }
+
+  .column:last-child { margin-right: unset; }
+
+  .collection *:first-child hr { display: none; } // Will supress the first hr in a record collection.
+}
+
+// Attributes.
+
+.marginless { margin: 0; }
+
+.mobile { display: none; } // Will only show on mobile.
+
+// Mobile stuff.
+
+@media (max-width: 899px) {
+  .mobile { display: block; }
+
+  .non-mobile { display: none; }
+
+  .row {
+    display: block;
+
+    .column {
+      min-width: unset;
+      margin-right: unset;
+    }
+
+    .collection *:first-child hr { display: block; } // Will show the first hr in a record collection.
+  }
+}

@@ -1,0 +1,55 @@
+* {
+  margin: 0px;
+  padding: 0px;
+	border: none;
+	vertical-align: baseline;
+	font: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+  font-size: 10px; // Default 0.1rem for 1px.
+  -webkit-text-size-adjust: 100%; // Prevent adjustments of font size after orientation changes in iOS.
+  touch-action: manipulation; // No double tap on mobile.
+}
+
+main {
+  display: block; // Render the `main` element consistently in IE.
+}
+
+a {
+  background-color: transparent; // Remove the gray background on active links in IE 10.
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+//  HTML5 display-role reset for older browsers.
+
+ol, ul {
+	list-style: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+menu, nav { &[hidden] { display: none; } }
+
+blockquote, q {
+	quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+	content: "";
+	content: none;
+}

@@ -1,0 +1,32 @@
+// Text.
+
+$text-regular: #393e49;
+$text-dark: #222222;
+$text-light: #ffffff;
+
+$text-info: #1a73e8;
+$text-success: #028000;
+$text-warning: #f8c630;
+$text-danger: #fe6d73;
+
+// Borders.
+
+$border-regular: #6c757d;
+$border-dark: #453f46;
+$border-light: #d0d0d0;
+
+$border-info: #808ed1;
+$border-success: #71ad6b;
+$border-warning: #f8c630;
+$border-danger: $text-danger;
+
+// Background.
+
+$background-regular: $border-regular;
+$background-dark: $border-dark;
+$background-light: $text-light;
+
+$background-info: $border-info;
+$background-success: $border-success;
+$background-warning: $text-warning;
+$background-danger: $text-danger;

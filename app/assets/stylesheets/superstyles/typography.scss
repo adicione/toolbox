@@ -1,0 +1,221 @@
+// Color styles.
+
+.text-light { color: $text-light; }
+.text-regular { color: $text-regular; }
+.text-dark { color: $text-dark; }
+
+.text-info { color: $text-info; }
+.text-success { color: $text-success; }
+.text-warning { color: $text-warning ; }
+.text-danger { color: $text-danger; }
+
+// Import text fonts.
+
+@font-face {
+  font-family: "Sans Regular";
+  font-display: swap;
+  src: font-url("Google-Sans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sans Bold";
+  font-display: swap;
+  src: font-url("Google-Sans-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sans Bold Italic";
+  font-display: swap;
+  src: font-url("Google-Sans-Bold-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Sans Italic";
+  font-display: swap;
+  src: font-url("Google-Sans-Italic.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Material Icons Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Material Icons Outlined";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Outlined-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Material Icons Round";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Round-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Material Icons Sharp";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Sharp-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Material Icons Two Tone";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Two-Tone-Regular.otf") format("opentype");
+}
+
+// Text styles.
+
+html {
+  font-family: "Sans Regular";
+  color: $text-regular;
+}
+
+body {
+  font-size: 1.5rem;
+}
+
+b, h1, h2, h3, h4, h5, strong {
+  font-family: "Sans Bold";
+}
+
+ins {
+  text-decoration: none;
+}
+
+del {
+  text-decoration: line-through;
+}
+
+i {
+  font-family: "Sans Italic";
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 3.5rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 2.9rem;
+}
+
+h3, h4, h5 {
+  font-size: 2rem;
+  line-height: 2rem;
+
+  i { font-size: 1.821rem; } // It changes the tag height when has the same size...
+}
+
+p {
+  line-height: 2rem;
+}
+
+p, h1, h2, h3, h4, h5 {
+  margin-bottom: 2rem;
+}
+
+label {
+  line-height: 1.3rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+label, .small {
+  font-size: 1.3rem;
+}
+
+a {
+  text-decoration: none;
+  color: $text-info;
+
+  &:hover {
+    color: $text-light;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+// Regular dotted border creates strange anomalies
+// at the beginning and the end of lines.
+
+hr {
+  height: 0.2rem;
+  border: none;
+  background-image: linear-gradient(90deg, currentColor 50%, transparent 50%);
+  background-repeat: repeat-x;
+  background-size: 0.4rem 0.2rem;
+  color: $border-regular;
+  margin-bottom: 2rem;
+}
+
+// Import icons fonts.
+
+@font-face {
+  font-family: "Material Icons Regular";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Material Icons Outlined";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Outlined-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Material Icons Round";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Round-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Material Icons Sharp";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Sharp-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Material Icons Two Tone";
+  font-style: normal;
+  font-weight: 400;
+  src: url("Material-Icons-Two-Tone-Regular.otf") format("opentype");
+}
+
+// Icon styles.
+
+.material-icons-regular, .material-icons-outlined, .material-icons-round, .material-icons-sharp, .material-icons-two-tone {
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  vertical-align: middle;
+  font-feature-settings: "liga";
+  -webkit-font-feature-settings: "liga";
+  -webkit-font-smoothing: antialiased;
+}
+
+.material-icons-regular { font-family: "Material Icons Regular"; }
+.material-icons-outlined { font-family: "Material Icons Outlined"; }
+.material-icons-round { font-family: "Material Icons Round"; }
+.material-icons-sharp { font-family: "Material Icons Sharp"; }
+.material-icons-two-tone { font-family: "Material Icons Two Tone"; }
+.material-icons-empty { font-variation-settings: "FILL" 0; }

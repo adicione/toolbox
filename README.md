@@ -1,53 +1,65 @@
 # Toolbox
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/toolbox`. To experiment with that code, run `bin/console` for an interactive prompt.
+A set of ruby, JS and css tools we normally use across projects.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add to the application's Gemfile and `bundle` it up.
 
-Install the gem and add to the application's Gemfile by executing:
+    gem "toolbox", git: "https://github.com/adicione/toolbox.git"
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+## Stimulus Mask Controller
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Wrap the maskables with `data-controller="mask"` and add the desired mask to the class of eash input.
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+The available masks are date `date-mask`, phone `phone-mask`, cpf `cpf-mask`, cnpj `cnpj-mask`, money brl `money-brl-mask`, money usd `money-usd-mask`, cep `cep-mask` and plate `plate-mask`.
 
-## Usage
+## Turnstile recaptcha and login setup
 
-TODO: Write usage instructions here
+Create `app/views/new.html.erb` containing:
 
-## Turnstile recaptcha setup
+Add the following paths to `app/config/routes.rb`, this will add the `login_path`, `logout_path` and `create_session_path` to the routes.
 
-Create app/views/new.html.erb containing:
+    scope module: :sessions do
+      get :login, action: :new, as: :login
+      post :login, action: :create, as: :create_session
+      get :logout, action: :destroy, as: :logout
+    end
 
-    login_form()
+## Superstyles
 
-Edit app/config/routes.rb in order to add the folowing setup:
+Superstyles needs sass to work properly:
 
-    $ scope module: :sessions do
-    $   get :login, action: :new, as: :login
-    $   post :login, action: :create, as: :create_session
-    $   get :logout, action: :destroy, as: :logout
-    $ end
+    aplication.css to application.scss
 
-This will add the "login_path", "logout_path" and "create_session_path" to the routes.
+You can include all configs and elements by:
 
+    @import "superstyles";
 
-As default, it will use "login" and "Login..." as placeholder with a "create_session_path" as the URL. With the following parameter
+Or add each individual element:
 
-## Development
+    // Configs...
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+    @import "superstyles/colors";
+    @import "superstyles/reset";
+    @import "superstyles/typography";
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    // Elements...
+
+    @import "superstyles/animation";
+    @import "superstyles/inputs";
+    @import "superstyles/buttons";
+    @import "superstyles/flashes";
+    @import "superstyles/modals";
+    @import "superstyles/layouts";
+
+    // Pages...
+
+    @import "superstyles/pages/login";
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/toolbox. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/toolbox/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub at [toolbox]https://github.com/adicione/toolbox. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/adicione/toolbox/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
@@ -55,4 +67,4 @@ The gem is available as open source under the terms of the [MIT License](https:/
 
 ## Code of Conduct
 
-Everyone interacting in the Toolbox project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/toolbox/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the Toolbox project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/adicione/toolbox/blob/master/CODE_OF_CONDUCT.md).

@@ -1,0 +1,74 @@
+// TODO : Organize in a better way.
+
+.fade-in { animation: fadeIn 1s; }
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.flash-fade-in-and-out {
+  overflow: hidden; // Keeps from showing the content while it's fading out.
+  transform-origin: top; // Ensures the element collapses towards the top.
+  animation: flashFadeInAndOut 12s ease-in-out forwards;
+}
+
+@keyframes flashFadeInAndOut {
+  0% { margin-bottom: 0; max-height: 0; padding: 0 2.2rem; }
+  2% { margin-bottom: 0.5rem; max-height: 50rem; padding: 2rem 2.2rem 1.8rem 2.2rem; }
+
+  10%, 80% { opacity: 1; }
+  0%, 5%, 90%, 100% { opacity: 0; }
+  10%, 80%, 90% { transform: scaleY(1); }
+  100% { transform: scaleY(0); }
+}
+
+.shake {
+  animation: shake 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-delay: 2s;
+
+  -webkit-animation: shake 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 2s;
+}
+
+@keyframes shake {
+  1.5%, 22.5% { transform: translate(0px, 0px) rotate(0deg); }
+
+  2% { transform: translate(1px, 1px) rotate(0deg); }
+  2.5% { transform: translate(-1px, -2px) rotate(-15deg); }
+
+  5% { transform: translate(-3px, 0px) rotate(15deg); }
+  5.5% { transform: translate(3px, 2px) rotate(0deg); }
+
+  10% { transform: translate(1px, -1px) rotate(15deg); }
+  10.5% { transform: translate(-1px, 2px) rotate(-15deg); }
+
+  15% { transform: translate(-3px, 1px) rotate(0deg); }
+  15.5% { transform: translate(3px, 1px) rotate(-15deg); }
+
+  20% { transform: translate(-1px, -1px) rotate(15deg); }
+  20.5% { transform: translate(1px, 2px) rotate(0deg); }
+
+  22% { transform: translate(1px, -2px) rotate(-15deg); }
+}
+
+.spin {
+  animation-name: spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

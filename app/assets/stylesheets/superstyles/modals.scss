@@ -1,0 +1,113 @@
+$max: 85%;
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  height: 100%; // Need to be in % else bug blur.
+  width: 100%; // Need to be in % else bug blur.
+  color: transparent;
+}
+
+// Modals.
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: -webkit-fill-available; // Fix for safary VH bug or feature...
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .overlay {
+    background: rgba($color: $text-dark, $alpha: 0.1);
+    backdrop-filter: blur(0.3rem);
+    -webkit-backdrop-filter: blur(0.3rem);  
+  }
+
+  .container {
+    position: relative;
+    z-index: 2;
+    height: auto;
+    width: 40rem;
+    bottom: -100vh;
+    max-height: $max;
+    max-width: $max;
+    border-radius: 0.4rem;
+    transition: all 0.5s ease;
+    overflow: auto;
+    background-color: $background-light;
+
+    &.sm { width: 20rem; }
+
+    &.lg { width: 60rem; }
+
+    &.active { bottom: calc(-50% + (#{ $max } / 2 + 7.5vh) ); }
+
+    .content {
+      margin: 2rem 2rem 0 2rem;
+      text-align: left;
+      overflow-x: hidden;
+    }
+  }
+
+  &.right, &.left {
+    left: unset;
+    right: unset;
+    display: unset;
+    align-items: unset;
+    justify-content: unset;
+
+    .container {
+      position: inherit;
+      top: 0;
+      bottom: unset;
+      max-height: unset;
+      height: 100vh; // Height is ok now, without this, height isnt enought.
+
+      &.active { bottom: unset; }
+    }
+  }
+
+  &.right .container {
+    right: -100vw;
+    border-top-right-radius: unset;
+    border-bottom-right-radius: unset;
+
+    &.active { right: 0; }
+  }
+
+  &.left .container {
+    left: -100vw;
+    border-top-left-radius: unset;
+    border-bottom-left-radius: unset;
+
+    &.active { left: 0; }
+  }
+
+  &.top .container {
+    top: -100vw;
+    max-height: unset;
+    height: 100vh;
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+
+    &.active { top: 0; }
+  }
+
+  &.bottom .container {
+    top: unset;
+    max-height: unset;
+    height: 100vh;
+    bottom: -100vh;
+    border-bottom-left-radius: unset;
+    border-bottom-right-radius: unset;
+
+    &.active { bottom:0; }
+  }
+
+  .blur, .container { -webkit-overflow-scrolling : touch; }
+}

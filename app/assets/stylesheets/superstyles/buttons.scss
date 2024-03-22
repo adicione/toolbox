@@ -1,0 +1,100 @@
+menu {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .btn, input.btn, input { margin-bottom: 0.5rem; }
+  input { margin-right: 0.5rem; }
+  input.btn { flex: unset; }
+  .btn:last-child, input:last-child { margin-right: unset; }
+  * .btn:last-child, * input:last-child { margin-right: 0.5rem; }
+}
+
+nav {
+  margin-bottom: 1.5rem;
+
+  menu { margin-bottom: 0; }
+}
+
+.btn, input.btn {
+  width: fit-content;
+  display: block;
+  text-transform: capitalize;
+  border-radius: 0.4rem;
+  cursor: pointer;
+
+  &.btn[hidden] { display: none; }
+
+  &:hover, &:focus, &:disabled, &.disabled {
+    outline: none;
+    opacity: 0.3; // TODO : While it is in hover, it shows over the overlay objects.
+  }
+
+  margin: 0 0.5rem 2rem 0;
+  padding: 0.6rem 1rem 0.6rem 1rem;
+
+  // Icons
+
+  i { margin: 0rem 0.3rem 0.2rem 0; }
+  i:first-child { margin-left: -0.2rem; }
+  i:last-child { margin-right: -0.2rem; }
+  i:first-child.back { margin-left: 0rem; }
+  i:last-child.back { margin-right: -0.6rem; }
+
+  &.md {
+    font-size: 2rem;
+    padding: 0.8rem 1rem 0.7rem 1rem;
+  }
+
+  &.lg {
+    font-size: 2.5rem;
+    padding: 1.2rem 1.5rem 1.1rem 1.5rem;
+  }
+
+  background-color: $border-regular;
+  border: 0.2rem solid $border-regular;
+  color: $text-light;
+
+  &.primary {
+    background-color: $background-info;
+    border-color: $border-info;
+
+    &.reverse { color: $border-info; }
+  }
+
+  &.success {
+    background-color: $background-success;
+    border-color: $border-success;
+
+    &.reverse { color: $border-success; }
+  }
+
+  &.warning {
+    background-color: $background-warning;
+    border-color: $border-warning;
+    color: $text-regular;
+
+    &.reverse { color: $border-warning; }
+  }
+
+  &.danger {
+    background-color: $background-danger;
+    border-color: $border-danger;
+
+    &.reverse { color: $border-danger; }
+  }
+
+  &.disabled {
+    background-color: $border-regular;
+    border-color: $border-regular;
+    pointer-events: none;
+
+    &.reverse { color: $border-regular }
+  }
+
+  &.reverse {
+    background-color: transparent;
+    color: $border-regular;
+  }
+}

@@ -1,0 +1,31 @@
+#flash-wrap {
+  position: fixed;
+  z-index: 1000;
+  opacity: 0.98;
+  pointer-events: none;
+  text-align: right;
+  padding: 2rem 2rem 0 2rem;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .flash-message {
+    margin-left: auto;
+    padding: 2rem 2.2rem 1.8rem 2.2rem;
+    color: $text-light;
+    border-radius: 0.4rem;
+    margin-bottom: 0.5rem;
+    width: fit-content;
+    box-shadow: 0 0 0.4rem 0.1rem rgba($border-regular, 0.3);
+    pointer-events: inherit;
+    text-align: left;
+
+    a { pointer-events: auto; }
+
+    &.notice { background-color: $background-regular; }
+    &.primary { background-color: $background-info; }
+    &.success { background-color: $background-success; }
+    &.warning { background-color: $background-warning; }
+    &.danger, &.error { background-color: $background-danger; }
+  }
+}

@@ -1,0 +1,62 @@
+input, textarea, select {
+  flex: 1;
+  margin-bottom: 2rem;
+  padding: 0.6rem 0.8rem 0.6rem 0.8rem;
+  background-color: $text-light;
+  border: 0.2rem solid $border-regular;
+  border-radius: 0.4rem;
+  caret-color: $border-regular;
+  width: 100%;
+
+  &:focus { outline: none; }
+  &:hover, &:active, -internal-autofill-selected { background: $text-light; }
+
+  // Remove hightlight auto complete.
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover, 
+  input:-webkit-autofill:focus, 
+  input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px #fff inset;
+  }
+
+  // Remove hightlight text.
+
+  input::selection { 
+    background-color: transparent;
+  }
+
+    // Validation
+
+  // &.invalid, &.valid, &.selected {
+  //   color: $text-light;
+
+  //   ::placeholder { color: $text-light }
+  //   :-ms-input-placeholder { color: $text-light }
+  //   ::-ms-input-placeholder { color: $text-light }
+  // }
+  // &.invalid { background-color: $background-danger; }
+  // &.valid { background-color: $background-success; }
+  // &.selected { background-color: $background-info; }
+  // &.primary { border-color: $border-info; }
+}
+
+textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.input-row { 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-bottom: 1.5rem;
+}
+
+.checkbox {
+  display: flex;
+  width: 2rem;
+  margin-left: 1.5rem;
+}
+
+.half-margin-bottom { .input { margin-bottom: 0.5rem; } }
