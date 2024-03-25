@@ -1,44 +1,57 @@
-body { margin: 2rem 2rem 0 2rem; }
-
+// // //
 // Creates a multiple columns layout.
 
 .row {
+  // We can set gaps between columns, column width, min and max column with
+  // with steps of 1rem as classes. Ex: "gap-1", "min-width-2", "with-1", "max-width-2", etc.
+
   width: 100%;
   display: inline-flex;
   flex-wrap: wrap;
 
   .column {
-    margin-right: 2rem;
     flex: 1;
-    min-width: 42rem;
+
+    @for $input from 1 through 1000 {
+      $value: #{ $input }rem;
+
+      &.width-#{ $input } {
+        width: $value;
+        flex: none;
+      }
+      &.min-width-#{ $input } { min-width: $value; }
+      &.max-width-#{ $input } { max-width: $value; }
+    }
+
+    background-color: #000;
   }
 
-  .column:last-child { margin-right: unset; }
+  @for $gap from 1 through 1000 {
+    $value: #{ $gap }rem;
 
-  .collection *:first-child hr { display: none; } // Will supress the first hr in a record collection.
+    &.gap-#{ $gap } { gap: $value; }
+    &.gap-h-#{ $gap } { column-gap: $value; }
+    &.gap-v-#{ $gap } { row-gap: $value; }
+  }
 }
 
 // Attributes.
 
 .marginless { margin: 0; }
 
-.mobile { display: none; } // Will only show on mobile.
-
 // Mobile stuff.
 
+.mobile { display: none; } // Will only show on mobile.
+
 @media (max-width: 899px) {
-  .mobile { display: block; }
+  .mobile { display: unset; }
 
   .non-mobile { display: none; }
 
   .row {
-    display: block;
-
     .column {
       min-width: unset;
       margin-right: unset;
     }
-
-    .collection *:first-child hr { display: block; } // Will show the first hr in a record collection.
   }
 }

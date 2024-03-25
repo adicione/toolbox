@@ -26,7 +26,7 @@ input, textarea, select {
     background-color: transparent;
   }
 
-    // Validation
+  // Validation
 
   // &.invalid, &.valid, &.selected {
   //   color: $text-light;
@@ -46,17 +46,17 @@ textarea {
   resize: vertical;
 }
 
-.input-row { 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  margin-bottom: 1.5rem;
-}
+// .input-row { 
+//   display: flex;
+//   flex-direction: row;
+//   flex-wrap: nowrap;
+//   margin-bottom: 1.5rem;
+// }
 
-.checkbox {
-  display: flex;
-  width: 2rem;
-  margin-left: 1.5rem;
-}
+// .checkbox {
+//   display: flex;
+//   width: 2rem;
+//   margin-left: 1.5rem;
+// }
 
-.half-margin-bottom { .input { margin-bottom: 0.5rem; } }
+// .half-margin-bottom { .input { margin-bottom: 0.5rem; } }
