@@ -22,8 +22,6 @@
       &.min-width-#{ $input } { min-width: $value; }
       &.max-width-#{ $input } { max-width: $value; }
     }
-
-    background-color: #000;
   }
 
   @for $gap from 1 through 1000 {
