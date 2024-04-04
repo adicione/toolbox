@@ -1,10 +1,7 @@
-// // //
-// Creates a multiple columns layout.
-
+// We can set gaps between columns, column width, min and max column
+// with steps of 1rem as classes. Ex: "gap-1", "min-width-2", "with-1",
+// "max-width-2", etc...
 .row {
-  // We can set gaps between columns, column width, min and max column with
-  // with steps of 1rem as classes. Ex: "gap-1", "min-width-2", "with-1", "max-width-2", etc.
-
   width: 100%;
   display: inline-flex;
   flex-wrap: wrap;
@@ -34,22 +31,66 @@
 }
 
 // Attributes.
-
 .marginless { margin: 0; }
 
-// Mobile stuff.
+// Will only show on mobile view.
+.mobile { display: none; }
 
-.mobile { display: none; } // Will only show on mobile.
-
-@media (max-width: 899px) {
-  .mobile { display: unset; }
-
-  .non-mobile { display: none; }
-
+@media (max-width: 900px) {
+  // Undo the non mobile layout config.
   .row {
+    display: unset;
+    flex-wrap: unset;
+
     .column {
-      min-width: unset;
-      margin-right: unset;
+      @for $input from 1 through 1000 {
+        $value: unset;
+  
+        &.width-#{ $input } {
+          width: $value;
+          flex: inherit;
+        }
+        &.min-width-#{ $input } { min-width: $value; }
+        &.max-width-#{ $input } { max-width: $value; }
+      }
     }
   }
+
+  // Undo the non mobile layout config.
+  .mobile { display: block; }
+
+  // We can set gaps between columns, column width, min and max column
+  // with steps of 1rem as classes. Ex: "mobile-gap-1", "mobile-min-width-2",
+  // "mobile-with-1", "mobile-max-width-2", etc...
+  .mobile-row {
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    .mobile-column {
+      flex: 1;
+
+      @for $input from 1 through 1000 {
+        $value: #{ $input }rem;
+
+        &.mobile-width-#{ $input } {
+          width: $value;
+          flex: none;
+        }
+        &.mobile-min-width-#{ $input } { min-width: $value; }
+        &.mobile-max-width-#{ $input } { max-width: $value; }
+      }
+    }
+
+    @for $gap from 1 through 1000 {
+      $value: #{ $gap }rem;
+
+      &.mobile-gap-#{ $gap } { gap: $value; }
+      &.mobile-gap-h-#{ $gap } { column-gap: $value; }
+      &.mobile-gap-v-#{ $gap } { row-gap: $value; }
+    }
+  }
+
+  // Will only show on non-mobile view.
+  .non-mobile { display: none; }
 }
