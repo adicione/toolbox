@@ -28,6 +28,8 @@ a {
   background-color: transparent; // Remove the gray background on active links in IE 10.
 }
 
+img { display: block; } // Removes the gap below images.
+
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
