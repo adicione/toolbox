@@ -94,6 +94,11 @@ Or add each individual element:
 
     @import "superstyles/pages/login";
 
+You can also change default toolbox values:
+
+    // Default mobile breakpoint is 900px.
+    $toolbox-breakpoint: 700px;
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at [toolbox]https://github.com/adicione/toolbox. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/adicione/toolbox/blob/master/CODE_OF_CONDUCT.md).

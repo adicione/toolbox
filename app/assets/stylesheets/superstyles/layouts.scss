@@ -36,7 +36,10 @@
 // Will only show on mobile view.
 .mobile { display: none; }
 
-@media (max-width: 900px) {
+// Default breakpoint.
+$toolbox-breakpoint: 900px !default;
+
+@media (max-width: $toolbox-breakpoint) {
   // Undo the non mobile layout config.
   .row {
     display: unset;
