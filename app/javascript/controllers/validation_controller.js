@@ -79,7 +79,11 @@ export default class extends Controller {
 
   initializeValidations() {
     // Event listeners.
-    this.inputs.forEach(input => { input.addEventListener('input', () => this.validateInput(input)) })
+    this.inputs.forEach(input => {
+      input.addEventListener('input', () => this.validateInput(input))
+
+      if (input.required) input.addEventListener('blur', () => this.validateInput(input))
+    })
     this.submitButton.addEventListener('click', event => this.handleSubmit(event))
 
     // Custom validation methods based
