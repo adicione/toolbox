@@ -8,7 +8,8 @@ module Toolbox
         # Precompiles additional assets.
         app.config.assets.precompile += %w(
           controllers/hello_toolbox_controller.js
-          controllers/mask_controller.js
+          controllers/masking_controller.js
+          controllers/validation_controller.js
           controllers/recaptcha_controller.js
           concerns/helpers.js
         ).freeze

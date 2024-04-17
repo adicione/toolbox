@@ -9,27 +9,34 @@ export default class extends Controller {
 
   initializeAndWatchInputs() {
     // Map classes to mask functions.
-    const maskClasss = {
-      'date-mask': this.maskDate,
-      'phone-mask': this.maskPhone,
-      'cpf-mask': this.maskCpf,
-      'cnpj-mask': this.maskCnpj,
-      'money-brl-mask': this.maskBrlMoney,
-      'money-usd-mask': this.maskUsdMoney,
-      'cep-mask': this.maskCep,
-      'plate-mask': this.maskPlate
+    //
+    // TODO : Create.
+    //
+    // maskNumbers()
+    // maskLetters()
+    // maskAlphanumeric()
+    // maskCpfCnpj()
+    const maskClasses = {
+      'mask-date': this.maskDate,
+      'mask-br-phone': this.maskBrPhone,
+      'mask-cpf': this.maskCpf,
+      'mask-cnpj': this.maskCnpj,
+      'mask-brl': this.maskBrl,
+      'mask-usd': this.maskUsd,
+      'mask-cep': this.maskCep,
+      'mask-br-plate': this.maskBrPlate
     }
 
     // Loops through each mask type.
-    Object.keys(maskClasss).forEach(maskClass => {
+    Object.keys(maskClasses).forEach(maskClass => {
       this.element.querySelectorAll(`input.${ maskClass }`).forEach(input => {
         // Applies the mask immediately if there's
         // an initial value.
-        if (input.value) { this.setInput(input, maskClasss[maskClass].call(this, input.value)) }
+        if (input.value) { this.setInput(input, maskClasses[maskClass].call(this, input.value)) }
 
         // Attaches an input event listener
         // for dynamic masking.
-        input.addEventListener('input', event => { this.setInput(event.target, maskClasss[maskClass].call(this, event.target.value)) })
+        input.addEventListener('input', event => { this.setInput(event.target, maskClasses[maskClass].call(this, event.target.value)) })
       })
     })
   }
@@ -67,7 +74,7 @@ export default class extends Controller {
     return { result, maskPositions }
   }
 
-  maskPhone(phone) {
+  maskBrPhone(phone) {
     const rawPhone = phone.replace(/\D/g, '').slice(0, 11)
     const result = rawPhone
       .replace(/^(?=\d{0,2}$)(\d{1,2})/, '($1')
@@ -102,7 +109,7 @@ export default class extends Controller {
     return { result, maskPositions }
   }
 
-  maskBrlMoney(cents) {
+  maskBrl(cents) {
     const rawCents = cents.replace(/\D/g, '').replace(/^0+/, '')
     let result = rawCents // Set differently as it will determine mask positions.
 
@@ -126,7 +133,7 @@ export default class extends Controller {
     return { result, maskPositions }
   }
 
-  maskUsdMoney(cents) {
+  maskUsd(cents) {
     const rawCents = cents.replace(/\D/g, '').replace(/^0+/, '')
     let result = rawCents // Set differently as it will determine mask positions.
 
@@ -158,7 +165,7 @@ export default class extends Controller {
     return { result, maskPositions }
   }
 
-  maskPlate(input) {
+  maskBrPlate(input) {
     // First, converts the input to uppercase and
     // strips all non-alphanumeric characters, mantaining
     // it under 7 characters.

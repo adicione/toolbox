@@ -10,9 +10,28 @@ Add to the application's Gemfile and `bundle` it up.
 
 ## Stimulus Mask Controller
 
-Wrap the maskables with `data-controller="mask"` and add the desired mask to the class of eash input.
+Wrap the maskables with `data-controller="masking"` and add the desired mask to the class of eash input.
 
-The available masks are date `date-mask`, phone `phone-mask`, cpf `cpf-mask`, cnpj `cnpj-mask`, money brl `money-brl-mask`, money usd `money-usd-mask`, cep `cep-mask` and plate `plate-mask`.
+The available masks are `mask-date`, `mask-br-phone`, `mask-cpf`, `mask-cnpj`, `mask-brl`, `mask-usd`, `mask-cep` and `mask-plate`.
+
+## Stimulus Validation Controller
+
+Wrap the form with `data-controller="validation"` and add the desired validation to the class of eash input.
+
+The available validations are `validate-cpf`, `validate-email` and `validate-br-phone`.
+
+In addition to validations, you can also add `required: true` to require it.
+
+TODO : Add following validations.
+
+    validateNumbers()
+    validateLetters()
+    validateAlphanumeric()
+    validateCnpj()
+    validateCpfCnpj()
+    validateCep()
+    validateBrPlate()
+    validateDate() // We nave a very nice regex for this one
 
 ## Turnstile recaptcha and login setup
 

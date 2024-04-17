@@ -14,9 +14,9 @@ input, textarea, select {
   // Remove hightlight auto complete.
 
   input:-webkit-autofill,
-  input:-webkit-autofill:hover, 
-  input:-webkit-autofill:focus, 
-  input:-webkit-autofill:active{
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #fff inset;
   }
 
@@ -26,19 +26,19 @@ input, textarea, select {
     background-color: transparent;
   }
 
-  // Validation
+  // Validation.
 
-  // &.invalid, &.valid, &.selected {
-  //   color: $text-light;
+  &.invalid, &.valid, &.selected {
+    color: $text-light;
 
-  //   ::placeholder { color: $text-light }
-  //   :-ms-input-placeholder { color: $text-light }
-  //   ::-ms-input-placeholder { color: $text-light }
-  // }
-  // &.invalid { background-color: $background-danger; }
-  // &.valid { background-color: $background-success; }
-  // &.selected { background-color: $background-info; }
-  // &.primary { border-color: $border-info; }
+    ::placeholder { color: $text-light }
+    :-ms-input-placeholder { color: $text-light }
+    ::-ms-input-placeholder { color: $text-light }
+  }
+  &.invalid { background-color: $background-danger; }
+  &.valid { background-color: $background-success; }
+  &.selected { background-color: $background-info; }
+  &.primary { border-color: $border-info; }
 }
 
 textarea {
