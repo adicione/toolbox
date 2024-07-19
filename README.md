@@ -76,11 +76,11 @@ Recaptcha uses rails secret file to store credentials.
 The file should at least look like this:
 
     recaptcha:
-        secret: secretsitekeyhere
+        secret: 0x4AAAAAAADSnBhdwRVSWKVJctGQgGKU_58
 
 And the posted `params[:recaptcha_token]` can be checked by `verify_recaptcha` method available upon adding the following into your controller:
 
-    include Pundit::Authorization
+    include Toolbox::Recaptcha
 
 ## Superstyles
 
@@ -115,9 +115,9 @@ Or add each individual element:
 
 You can also change default toolbox values:
 
-    // Default mobile breakpoint is 900px.
+    // Default mobile breakpoint.
 
-    $toolbox-breakpoint: 700px;
+    $toolbox-breakpoint: 900px;
 
     // Text.
 
@@ -151,3 +151,27 @@ You can also change default toolbox values:
     $background-success: $border-success;
     $background-warning: $text-warning;
     $background-danger: $text-danger;
+
+## Flash messages
+
+Add the available flash types to `application_controller.rb`:
+
+    add_flash_types :primary, :success, :danger, :warning
+
+Add the flash helper to `application_helper.rb`:
+
+    def flash_messages
+        return unless flash.any?
+
+        messages = flash.map do |key, message|
+        content_tag :li, message.html_safe, class: "flash-message #{ key } flash-fade-in-and-out"
+        end
+
+        return messages.join.html_safe
+    end
+
+And add the overlay to html layout:
+
+    <div id="overlay">
+      <ul id="flash-wrap"><%= flash_messages %></ul>
+    </div>
