@@ -116,16 +116,38 @@ Or add each individual element:
 You can also change default toolbox values:
 
     // Default mobile breakpoint is 900px.
+
     $toolbox-breakpoint: 700px;
 
-## Contributing
+    // Text.
 
-Bug reports and pull requests are welcome on GitHub at [toolbox]https://github.com/adicione/toolbox. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/adicione/toolbox/blob/master/CODE_OF_CONDUCT.md).
+    $text-regular: #393e49;
+    $text-dark: #222222;
+    $text-light: #ffffff;
 
-## License
+    $text-info: #1a73e8;
+    $text-success: #028000;
+    $text-warning: #f8c630;
+    $text-danger: #fe6d73;
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+    // Borders.
 
-## Code of Conduct
+    $border-regular: #6c757d;
+    $border-dark: #453f46;
+    $border-light: #d0d0d0;
 
-Everyone interacting in the Toolbox project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/adicione/toolbox/blob/master/CODE_OF_CONDUCT.md).
+    $border-info: #808ed1;
+    $border-success: #71ad6b;
+    $border-warning: #f8c630;
+    $border-danger: $text-danger;
+
+    // Background.
+
+    $background-regular: $border-regular;
+    $background-dark: $border-dark;
+    $background-light: $text-light;
+
+    $background-info: $border-info;
+    $background-success: $border-success;
+    $background-warning: $text-warning;
+    $background-danger: $text-danger;
