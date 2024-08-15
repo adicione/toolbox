@@ -175,3 +175,17 @@ And add the overlay to html layout:
     <div id="overlay">
       <ul id="flash-wrap"><%= flash_messages %></ul>
     </div>
+
+## View helpers
+
+# Generates an <hr> tag to divide card objects.
+
+Adds the "mobile" class to the <hr> tag if the object is the first in the collection.
+The "mobile" class is typically used to style the <hr> for visibility in mobile layouts, while it remains hidden in non-mobile (desktop) applications.
+This method is particularly useful in "row" and "column" layouts.
+
+# Usage:
+
+The method needs to be called from within the collection's element and pass the element as a variable.
+
+    card_divider(object)

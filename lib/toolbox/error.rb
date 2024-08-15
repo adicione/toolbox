@@ -1,4 +1,2 @@
-module Toolbox
-  class Error < StandardError
-  end
+class Error < StandardError
 end
