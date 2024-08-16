@@ -2,19 +2,19 @@
 
 A set of ruby, JS and css tools we normally use across projects.
 
-## Installation
+# Installation
 
 Add to the application's Gemfile and `bundle` it up.
 
     gem "toolbox", git: "https://github.com/adicione/toolbox.git"
 
-## Stimulus Mask Controller
+# Stimulus Mask Controller
 
 Wrap the maskables with `data-controller="masking"` and add the desired mask to the class of eash input.
 
 The available masks are `mask-date`, `mask-br-phone`, `mask-cpf`, `mask-cnpj`, `mask-brl`, `mask-usd`, `mask-cep` and `mask-plate`.
 
-## Stimulus Validation Controller
+# Stimulus Validation Controller
 
 Wrap the form with `data-controller="validation"` and add the desired validation to the class of eash input.
 
@@ -33,7 +33,7 @@ TODO : Add following validations.
     validateBrPlate()
     validateDate() // We nave a very nice regex for this one
 
-## Turnstile recaptcha and login setup
+# Turnstile recaptcha and login setup
 
 Create `app/views/new.html.erb` containing:
 
@@ -71,18 +71,30 @@ Add the following paths to `app/config/routes.rb`, this will add the `login_path
 
 Recaptcha uses rails secret file to store credentials.
 
-    $ EDITOR="code --wait" rails credentials:edit --environment development
+    $ EDITOR="code --wait" rails credentials:edit
 
 The file should at least look like this:
 
     recaptcha:
         secret: 0x4AAAAAAADSnBhdwRVSWKVJctGQgGKU_58
 
+
+
+
+
+
+
+
+
+
+
+
+
 And the posted `params[:recaptcha_token]` can be checked by `verify_recaptcha` method available upon adding the following into your controller:
 
     include Toolbox::Recaptcha
 
-## Superstyles
+# Superstyles
 
 Superstyles needs sass to work properly:
 
@@ -92,7 +104,7 @@ You can include all configs and elements by:
 
     @import "superstyles";
 
-Or add each individual element:
+Or add each individual element as needed:
 
     // Configs...
 
@@ -152,40 +164,44 @@ You can also change default toolbox values:
     $background-warning: $text-warning;
     $background-danger: $text-danger;
 
-## Flash messages
+# Flash messages
 
-Add the available flash types to `application_controller.rb`:
+Add the flash helpers to `application_helper.rb`:
 
-    add_flash_types :primary, :success, :danger, :warning
+    include Toolbox::Helpers::FlashHelper
 
-Add the flash helper to `application_helper.rb`:
+And add the overlay into the `body` tag of your html layout:
 
-    def flash_messages
-        return unless flash.any?
+    <%= toolbox_overlay %>
 
-        messages = flash.map do |key, message|
-        content_tag :li, message.html_safe, class: "flash-message #{ key } flash-fade-in-and-out"
-        end
+Optionally, you can use the Toolbox flash styles importing it to your application.scss:
 
-        return messages.join.html_safe
-    end
+    @import "superstyles/flashes";
 
-And add the overlay to html layout:
+With the Toolbox flash styles we have `primary`, `success`, `warning` and `danger` available as flash types colored as `blue`, `green`, `yellow` and `red`.
 
-    <div id="overlay">
-      <ul id="flash-wrap"><%= flash_messages %></ul>
-    </div>
+# View helper methods
 
-## View helpers
+Add the view helpers to your `application_helper.rb` file:
 
-# Generates an <hr> tag to divide card objects.
+    include Toolbox::Helpers::FlashHelper
 
-Adds the "mobile" class to the <hr> tag if the object is the first in the collection.
-The "mobile" class is typically used to style the <hr> for visibility in mobile layouts, while it remains hidden in non-mobile (desktop) applications.
+### Icons
+
+Renders material icons and simplifies the `back` and `forward` icons to the right positioned ones.
+
+    toolbox_icon("icon-name")
+
+### Card divider
+
+Generates an `hr` tag to divide card objects.
+
+Adds the "mobile" class to the `hr` tag if the object is the first in the collection.
+
+The "mobile" class is typically used to style the `hr` for visibility in mobile layouts, while it remains hidden in non-mobile (desktop) applications.
+
 This method is particularly useful in "row" and "column" layouts.
-
-# Usage:
 
 The method needs to be called from within the collection's element and pass the element as a variable.
 
-    card_divider(object)
+    toolbox_card_divider(object)
