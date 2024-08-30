@@ -164,15 +164,21 @@ You can also change default toolbox values:
     $background-warning: $text-warning;
     $background-danger: $text-danger;
 
-# Flash messages
+# Overlay
 
 Add the flash helpers to `application_helper.rb`:
 
-    include Toolbox::Helpers::FlashHelper
+    include Toolbox::Helpers::Overlay
 
 And add the overlay into the `body` tag of your html layout:
 
-    <%= toolbox_overlay %>
+    <%= overlay %>
+
+### Flash messages
+
+In order to receive turbo flash, you will need to add a user's personal channel.
+
+    <%= turbo_stream_from(dom_id(current_user, :personal_channel)) if current_user %>
 
 Optionally, you can use the Toolbox flash styles importing it to your application.scss:
 

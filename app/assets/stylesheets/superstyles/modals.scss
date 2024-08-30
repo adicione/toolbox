@@ -1,31 +1,27 @@
-$max: 85%;
-
-.overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1;
-  height: 100%; // Need to be in % else bug blur.
-  width: 100%; // Need to be in % else bug blur.
-  color: transparent;
-}
-
-// Modals.
+// $max: 85%;
 
 .modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  height: 100vh;
   height: -webkit-fill-available; // Fix for safary VH bug or feature...
   display: flex;
   align-items: center;
   justify-content: center;
 
-  .overlay {
+  .blur {
+    position: inherit;
+    top: 0; // Fix the bug of the blur not being on the top.
+    left: 0;
+    z-index: 1;
+    height: 100%; // Need to be in % else bug blur.
+    width: 100%; // Need to be in % else bug blur.
     background: rgba($color: $text-dark, $alpha: 0.1);
     backdrop-filter: blur(0.3rem);
-    -webkit-backdrop-filter: blur(0.3rem);  
+    -webkit-backdrop-filter: blur(0.3rem);
+    color: transparent;
   }
 
   .container {
@@ -34,18 +30,18 @@ $max: 85%;
     height: auto;
     width: 40rem;
     bottom: -100vh;
-    max-height: $max;
-    max-width: $max;
+    max-height: 85%;
+    max-width: 85%;
     border-radius: 0.4rem;
     transition: all 0.5s ease;
     overflow: auto;
-    background-color: $background-light;
+    background-color: $text-light;
 
-    &.sm { width: 20rem; }
-
+    &.sm { width: 30%; }
     &.lg { width: 60rem; }
+    &.full { width: 100vw; }
 
-    &.active { bottom: calc(-50% + (#{ $max } / 2 + 7.5vh) ); }
+    &.active { bottom: calc(-50% + (#{ 85% } / 2 + 7.5vh) ); }
 
     .content {
       margin: 2rem 2rem 0 2rem;
@@ -66,7 +62,7 @@ $max: 85%;
       top: 0;
       bottom: unset;
       max-height: unset;
-      height: 100vh; // Height is ok now, without this, height isnt enought.
+      height: 100%; // Height is ok now, without this, height isnt enought.
 
       &.active { bottom: unset; }
     }
@@ -91,10 +87,9 @@ $max: 85%;
   &.top .container {
     top: -100vw;
     max-height: unset;
-    height: 100vh;
+    // height: 100vh;
     border-top-left-radius: unset;
     border-top-right-radius: unset;
-
     &.active { top: 0; }
   }
 
@@ -106,7 +101,7 @@ $max: 85%;
     border-bottom-left-radius: unset;
     border-bottom-right-radius: unset;
 
-    &.active { bottom:0; }
+    &.active { bottom: 0; }
   }
 
   .blur, .container { -webkit-overflow-scrolling : touch; }

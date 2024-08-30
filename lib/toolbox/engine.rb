@@ -1,6 +1,6 @@
 module Toolbbox
   class Engine < ::Rails::Engine
-    initializer "stimulus.assets" do |app|
+    initializer "toolbox.stimulus_controllers" do |app|
       if app.config.respond_to?(:assets)
         # Adds "app/javascript" to the paths used to search for assets.
         app.config.assets.paths << root.join("app", "javascript")
@@ -8,6 +8,7 @@ module Toolbbox
         # Precompiles additional assets.
         app.config.assets.precompile += %w(
           controllers/hello_toolbox_controller.js
+          controllers/modal_controller.js
           controllers/masking_controller.js
           controllers/validation_controller.js
           controllers/recaptcha_controller.js
@@ -24,9 +25,15 @@ module Toolbbox
       app.config.importmap.cache_sweepers << Engine.root.join("app/javascript")
     end
 
-    initializer 'your_gem.add_flash_types' do
+    initializer "toolbox.add_flash_types" do
       ActiveSupport.on_load(:action_controller) do
         add_flash_types :primary, :success, :danger, :warning
+      end
+    end
+
+    initializer "toolbox.helpers" do
+      ActiveSupport.on_load(:action_view) do
+        # include Toolbox::Helpers::Overlay
       end
     end
   end

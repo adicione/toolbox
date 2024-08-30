@@ -25,7 +25,10 @@
     &.notice { background-color: $background-regular; }
     &.primary { background-color: $background-info; }
     &.success { background-color: $background-success; }
-    &.warning { background-color: $background-warning; }
+    &.warning {
+      background-color: $background-warning;
+      color: $text-regular;
+    }
     &.danger, &.error { background-color: $background-danger; }
   }
 }
