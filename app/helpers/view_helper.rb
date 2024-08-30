@@ -19,6 +19,17 @@ module ViewHelper
     return personal_channel + overlay
   end
 
+  def modal(id: "", size: "md", location: "center", dismissable: true, &block)
+    content_tag(:div, class: "modal #{ location }", id: id, tabindex: 0, data: { controller: "modal", modal_dismissable: dismissable }) do
+      concat(content_tag(:div, "", class: "blur fade-in", data: { action: "click->modal#closeModal", modal_target: "blur" }))
+      concat(
+        content_tag(:div, class: "container #{ size } active", data: { modal_target: "container" }) do
+          content_tag(:div, capture(&block), class: "content")
+        end
+      )
+    end
+  end
+
   def flash_messages
     return unless flash.any?
 
@@ -29,10 +40,10 @@ module ViewHelper
     return messages.join.html_safe
   end
 
-
-    # Renders material icons.
-    def toolbox_icon(icon, options = {})
+  # Renders material icons.
+  def toolbox_icon(icon, options = {})
     icon_name = case icon
+
     when "back"
       "arrow_back_ios"
     when "forward"
