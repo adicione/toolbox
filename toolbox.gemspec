@@ -5,8 +5,8 @@ require_relative "lib/toolbox/version"
 Gem::Specification.new do |spec|
   spec.name = "toolbox"
   spec.version = Toolbox::VERSION
-  spec.authors = ["Ayres Narita"]
-  spec.email = ["eu@ayresnarita.com"]
+  spec.authors = [ "Ayres Narita" ]
+  spec.email = [ "eu@ayresnarita.com" ]
 
   spec.summary = "Adicione's toolbox."
   spec.description = "Styles, scripts and helpers."
@@ -30,10 +30,10 @@ Gem::Specification.new do |spec|
   end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.require_paths = [ "lib" ]
 
   # Uncomment to register a new dependency of your gem
-  spec.add_dependency "sassc-rails"
+  spec.add_dependency "dartsass-rails", "~> 0.5.1"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

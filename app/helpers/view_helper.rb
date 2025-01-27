@@ -16,7 +16,7 @@ module ViewHelper
       content_tag(:ul, flash_messages, id: "flash-wrap") if flash
     end
 
-    return personal_channel + overlay
+    personal_channel + overlay
   end
 
   def modal(id: "", size: "md", location: "center", dismissable: true, &block)
@@ -37,7 +37,7 @@ module ViewHelper
       content_tag(:li, message.html_safe, class: "flash-message #{ key } flash-fade-in-and-out")
     end
 
-    return messages.join.html_safe
+    messages.join.html_safe
   end
 
   # Renders material icons.
@@ -53,7 +53,7 @@ module ViewHelper
     end
 
     # Define the base class string for the icon.
-    style = ["notranslate", "material-icons-regular"]
+    style = [ "notranslate", "material-icons-regular" ]
 
     # Back button style.
     style << "back" if icon == "back"

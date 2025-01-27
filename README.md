@@ -33,136 +33,32 @@ TODO : Add following validations.
     validateBrPlate()
     validateDate() // We nave a very nice regex for this one
 
-# Turnstile recaptcha and login setup
+# Bootstrap Components
 
-Create `app/views/new.html.erb` containing:
-
-    <div id="main-login-wrap">
-        <div id="main-login-modal" data-controller="recaptcha" data-sitekey="0x4AAAAAAADSnPLVRXOUi1Iz">
-            <div id="recaptcha" data-recaptcha-target="recaptcha"></div>
-
-            <div data-recaptcha-target="reloadMessage" hidden>
-                <p>Sua autenticação expirou, retornou com erro ou você está tentando algo feio!</p>
-
-                <%= link_to "Tentar novamente", "", class: "btn" %>
-            </div>
-
-            <%= form_with url: create_session_path, data: { turbo: false, recaptcha_target: "loginForm", action: "recaptcha#validate", controller: "mask" }, html: { hidden: true } do |f| %>
-                <%= f.hidden_field(:recaptcha_token, data: { recaptcha_target: "recaptchaToken" }) %>
-                <%= f.text_field :login, value: params[:login], placeholder: "Login...", autofocus: :true, data: { recaptcha_target: "loginField", action: "recaptcha#toggleSubmitButton" } %>
-                <%= f.password_field :password, value: nil, placeholder: "Senha de acesso...", data: { recaptcha_target: "passwordField", action: "recaptcha#toggleSubmitButton" } %>
-                <%= f.submit "Entrar", class: "btn", disabled: true, hidden: true, data: { recaptcha_target: "submitButton" } %>
-            <% end %>
-        </div>
-    </div>
-
-Replace the `data-sitekey` with the one setup at CloudFlare't turstile page, or use one of the test available sitekeys.
-
-    2x00000000000000000000AB // Fake fails.
-    3x00000000000000000000FF // Force interactive.
-
-Add the following paths to `app/config/routes.rb`, this will add the `login_path`, `logout_path` and `create_session_path` to the routes.
-
-    scope module: :sessions do
-      get :login, action: :new, as: :login
-      post :login, action: :create, as: :create_session
-      get :logout, action: :destroy, as: :logout
-    end
-
-Recaptcha uses rails secret file to store credentials.
-
-    $ EDITOR="code --wait" rails credentials:edit
-
-The file should at least look like this:
-
-    recaptcha:
-        secret: 0x4AAAAAAADSnBhdwRVSWKVJctGQgGKU_58
-
-
-
-
-
-
-
-
-
-
-
-
-
-And the posted `params[:recaptcha_token]` can be checked by `verify_recaptcha` method available upon adding the following into your controller:
-
-    include Toolbox::Recaptcha
-
-# Superstyles
-
-Superstyles needs sass to work properly:
+Needs sass to work properly:
 
     aplication.css to application.scss
 
-You can include all configs and elements by:
+You can include all components by:
 
-    @import "superstyles";
+    @use "bootstrap.components" as bc;
+    @use "bootstrap.icons" as bi;
 
-Or add each individual element as needed:
 
-    // Configs...
 
-    @import "superstyles/colors";
-    @import "superstyles/reset";
-    @import "superstyles/typography";
 
-    // Elements...
 
-    @import "superstyles/animation";
-    @import "superstyles/inputs";
-    @import "superstyles/buttons";
-    @import "superstyles/flashes";
-    @import "superstyles/modals";
-    @import "superstyles/layouts";
 
-    // Pages...
 
-    @import "superstyles/pages/login";
 
-You can also change default toolbox values:
 
-    // Default mobile breakpoint.
 
-    $toolbox-breakpoint: 900px;
 
-    // Text.
 
-    $text-regular: #393e49;
-    $text-dark: #222222;
-    $text-light: #ffffff;
 
-    $text-info: #1a73e8;
-    $text-success: #028000;
-    $text-warning: #f8c630;
-    $text-danger: #fe6d73;
 
-    // Borders.
 
-    $border-regular: #6c757d;
-    $border-dark: #453f46;
-    $border-light: #d0d0d0;
 
-    $border-info: #808ed1;
-    $border-success: #71ad6b;
-    $border-warning: #f8c630;
-    $border-danger: $text-danger;
-
-    // Background.
-
-    $background-regular: $border-regular;
-    $background-dark: $border-dark;
-    $background-light: $text-light;
-
-    $background-info: $border-info;
-    $background-success: $border-success;
-    $background-warning: $text-warning;
-    $background-danger: $text-danger;
 
 # Overlay
 
