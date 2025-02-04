@@ -21,12 +21,12 @@ module OverlayHelper
   def alerts
     return unless flash.any?
 
-    flash.map { |key, message| alert(key, message) }.join.html_safe
+    alerts = flash.map { |key, message| alert(key, message) }
+
+    alerts.join.html_safe
   end
 
   def alert(key, message)
-    content_tag :div, class: "alert show fade alert-#{ key }", role: "alert" do
-      message.html_safe
-    end
+    content_tag :div, message.html_safe, class: "alert show fade alert-#{ key }", role: "alert"
   end
 end
