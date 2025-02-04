@@ -10,14 +10,14 @@ module ViewHelper
   # TODO:
   #
   # Way to add turbo channels as needed.
-  def overlay(flash: false)
-    personal_channel = current_user ? turbo_stream_from(dom_id(current_user, :personal_channel)) : ""
-    overlay = content_tag(:div, id: "overlay") do
-      content_tag(:ul, flash_messages, id: "flash-wrap") if flash
-    end
+  # def overlay(flash: false)
+  #   personal_channel = current_user ? turbo_stream_from(dom_id(current_user, :personal_channel)) : ""
+  #   overlay = content_tag(:div, id: "overlay") do
+  #     content_tag(:ul, flash_messages, id: "flash-wrap") if flash
+  #   end
 
-    personal_channel + overlay
-  end
+  #   personal_channel + overlay
+  # end
 
   def modal(id: "", size: "md", location: "center", dismissable: true, &block)
     content_tag(:div, class: "modal #{ location }", id: id, tabindex: 0, data: { controller: "modal", modal_dismissable: dismissable }) do
