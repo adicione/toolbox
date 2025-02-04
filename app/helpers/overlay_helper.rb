@@ -8,7 +8,7 @@ module OverlayHelper
   # Way to add sitewise turbo channels as needed.
   def overlay
     content_tag :div, id: "overlay" do
-      content_tag(:div, alerts, id: "alerts", class: "position-fixed p-3 top-0 end-0", data: { controller: "alert" })
+      content_tag :div, alerts, id: "alerts", class: "position-fixed p-3 top-0 end-0", data: { controller: "alert" }
     end
   end
 
@@ -21,12 +21,12 @@ module OverlayHelper
   def alerts
     return unless flash.any?
 
-    alerts = flash.map { |key, message| alert(key, message) }
+    alerts = flash.map { |key, message| alert key, message }
 
     alerts.join.html_safe
   end
 
   def alert(key, message)
-    content_tag :div, message.html_safe, class: "alert show fade alert-#{ key }", role: "alert"
+    content_tag :div, message.html_safe, class: "alert show fade alert-#{ key }", role: "alert", data: { bs_dismiss: "alert" }
   end
 end

@@ -11,7 +11,6 @@ module Toolbbox
           controllers/hello_toolbox_controller.js
           controllers/modal_controller.js
           controllers/masking_controller.js
-          controllers/overlay_controller.js
           controllers/validation_controller.js
           controllers/recaptcha_controller.js
           concerns/helpers.js
