@@ -1,6 +1,6 @@
 module Toolbbox
   class Engine < ::Rails::Engine
-    #isolate_namespace Toolbox
+    # isolate_namespace Toolbox
 
     initializer "toolbox.stimulus_controllers" do |app|
       if app.config.respond_to?(:assets)
@@ -9,7 +9,6 @@ module Toolbbox
         # Precompiles additional assets.
         app.config.assets.precompile += %w[
           controllers/hello_toolbox_controller.js
-          controllers/modal_controller.js
           controllers/masking_controller.js
           controllers/validation_controller.js
           controllers/recaptcha_controller.js

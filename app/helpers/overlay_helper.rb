@@ -8,7 +8,7 @@ module OverlayHelper
   # Way to add sitewise turbo channels as needed.
   def overlay
     content_tag :div, id: "overlay" do
-      content_tag :div, alerts, id: "alerts", class: "position-fixed p-3 top-0 end-0", data: { controller: "alert" }
+      content_tag :div, alerts, id: "alerts", class: "position-fixed p-4 top-0 end-0", data: { controller: "alert" }
     end
   end
 
