@@ -8,14 +8,13 @@ Gem::Specification.new do |spec|
   spec.authors = [ "Ayres Narita" ]
   spec.email = [ "eu@ayresnarita.com" ]
 
-  spec.summary = "Adicione's toolbox."
+  spec.summary = "Toolbox."
   spec.description = "Styles, scripts and helpers."
   spec.homepage = "https://adici.one.com" # TODO: Put your gem's website or public repo URL here.
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
   spec.metadata["allowed_push_host"] = "https://github.com/adicione/toolbox.git"
-
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/adicione/toolbox.git"
   spec.metadata["changelog_uri"] = "https://github.com/adicione/toolbox/blob/main/CHANGELOG.md"
@@ -34,6 +33,8 @@ Gem::Specification.new do |spec|
 
   # Uncomment to register a new dependency of your gem
   spec.add_dependency "dartsass-rails", "~> 0.5.1"
+  spec.add_dependency "bootstrap", "~> 5.3.3"
+  spec.add_dependency "font-awesome-sass"
 
   # For more information and examples about making a new gem, check out our
   # guide at: https://bundler.io/guides/creating_gem.html

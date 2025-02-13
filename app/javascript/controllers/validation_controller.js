@@ -9,6 +9,8 @@ export default class extends Controller {
   }
 
   disconnect() {
+    console.log('Validation controller disconnected.')
+
     this.cleanupEventListeners()
   }
 

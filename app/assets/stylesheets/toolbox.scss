@@ -1,0 +1,56 @@
+@use "font-awesome" with ($fa-font-path: "font-awesome");
+@use "bootstrap";
+
+
+.input-group {
+  input {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: var(--bs-border-color) !important;
+  }
+}
+
+// Adds spacing between icon and text automatically.
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  &.btn-sm { gap: 0.4rem; }
+  &.btn-lg { gap: 0.8rem; }
+
+  i { line-height: 1.5rem; }
+}
+
+// Alerts have are sized by it's content.
+#alerts {
+  z-index: 1080; // Higher than Bootstrap tooltips.
+  flex-direction: column;
+  align-items: flex-end;
+  display: flex;
+
+  .alert {
+    display: inline-block;
+  
+    a { @extend .alert-link; }
+  }
+}
+
+// Override Bootstrap gutter.
+//
+// TODO : Found problem with the grid
+// system when it comes to forms.
+.container, .container-fluid, .row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+}
+
+// Breadcrumbs with a custom divider and better spacing.
+$breadcrumb-divider: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='5.7' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E";
+
+.breadcrumb {
+  --bs-breadcrumb-divider: url("#{ $breadcrumb-divider }");
+}
+
+// Add margin-bottom similar with headers.
+p { @extend .mb-2; }
