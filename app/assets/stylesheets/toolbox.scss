@@ -1,7 +1,11 @@
 @use "font-awesome" with ($fa-font-path: "font-awesome");
 @use "bootstrap";
 
+.modal-body {
+  padding-bottom: 0;
+}
 
+// No funny outline on focus.
 .input-group {
   input {
     outline: none !important;

@@ -8,8 +8,12 @@ export default class extends Controller {
 
     this.modalInstance = new bootstrap.Modal(this.element)
 
-    if (this.element.getAttribute("aria-hidden") === "false") {
-      this.modalInstance.show() // From turbo-stream.
+    if (this.element.dataset.selfish === "true") {
+      this.closeOtherModals()
+    }
+
+    if (this.element.dataset.hidden === "false" && window.getComputedStyle(this.element).display === "none") {
+      this.modalInstance.show() // Normally from turbo-stream.
     }
 
     this.element.addEventListener('hidden.bs.modal', event => {
@@ -21,5 +25,17 @@ export default class extends Controller {
     console.log("Modal controller disconnected.")
 
     this.modalInstance.dispose()
+  }
+
+  hodeModalBuddies() {
+    const modalBuddies = document.querySelectorAll(".modal.show") // Open modals.
+
+    modalBuddies.forEach(modal => {
+      if (modal !== this.element) { // Exclude the current modal.
+        let bsModal = bootstrap.Modal.getInstance(modal)
+
+        if (bsModal) bsModal.hide()
+      }
+    })
   }
 }
