@@ -1,7 +1,7 @@
 module Toolbbox
   class Engine < ::Rails::Engine
     initializer "toolbox.stimulus_controllers" do |app|
-      if app.config.respond_to?(:assets)
+      if app.config.respond_to? :assets
         app.config.assets.paths << root.join("app", "javascript") # Controller paths.
       end
     end
@@ -12,7 +12,7 @@ module Toolbbox
     end
 
     initializer "toolbox.add_flash_types" do
-      ActiveSupport.on_load(:action_controller_base) do
+      ActiveSupport.on_load :action_controller_base do
         add_flash_types :danger, :warning, :info, :success, :primary, :secondary, :light # Bootstrap matching colors.
       end
     end

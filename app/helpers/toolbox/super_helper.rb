@@ -1,5 +1,9 @@
 module Toolbox
-  module OverlayHelper
+  module MainHelper
+    def link_to_confirmation(link_text, path, **options)
+      render Toolbox::ConfirmationComponent.new(link_text, path, **options)
+    end
+
     # include ActionView::Context
 
     # A base for turbo includes. (modals, flash and etc...)

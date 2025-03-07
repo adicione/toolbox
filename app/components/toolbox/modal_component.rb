@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-class Bootstrap::ModalComponent < ViewComponent::Base
+class Toolbox::ModalComponent < ViewComponent::Base
   renders_one :header
   renders_one :footer
 
-  def initialize(id: nil, dismissable: true, hidden: true, persistent: false, selfish: false, size: nil, centered: "modal-dialog-centered")
+  def initialize(id: nil, dismissable: true, close_button: false, hidden: true, persistent: false, selfish: false, size: nil, centered: "modal-dialog-centered")
     @id = id
     @dismissable = dismissable
+    @close_button = close_button
     @hidden = hidden
     @persistent = persistent
     @selfish = selfish # Will close other modals when opening.
@@ -20,7 +21,7 @@ class Bootstrap::ModalComponent < ViewComponent::Base
   end
 
   def modal_dialog(&block)
-    classes = [ "modal-dialog", @size, @centered ].compact.join(" ")
+    classes = [ "modal-dialog", @size, @centered ].compact.join " "
 
     content_tag :div, capture(&block), class: classes
   end
@@ -30,12 +31,8 @@ class Bootstrap::ModalComponent < ViewComponent::Base
 
     title = content_tag :h1, header, class: "modal-title fs-5"
 
-    button = if @dismissable
-      content_tag :button, "", class: "btn-close", data: { bs_dismiss: "modal" }, aria: { label: "Close" }
-    end
-
     content_tag :div, class: "modal-header" do
-      safe_join([ title, button ].compact)
+      safe_join [ title, close_button ].compact
     end
   end
 
@@ -69,4 +66,10 @@ class Bootstrap::ModalComponent < ViewComponent::Base
 
     options.compact # Remove nil values.
   end
+
+  def close_button
+    return unless @dismissable && @close_button
+
+    content_tag :button, "", class: "btn-close", data: { bs_dismiss: "modal" }, aria: { label: "Close" }
+  end  
 end

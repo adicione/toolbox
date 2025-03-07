@@ -1,0 +1,40 @@
+@forward "font-awesome" with ($fa-font-path: "font-awesome");
+@forward "bootstrap";
+
+// Small shaddow arround the modal.
+.modal-content { box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+
+// No funny outline on focus.
+.input-group {
+  input {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: var(--bs-border-color) !important;
+  }
+}
+
+// Adds spacing between icon and text automatically.
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  &.btn-sm { gap: 0.4rem; }
+  &.btn-lg { gap: 0.8rem; }
+
+  i { line-height: 1.5rem; }
+}
+
+// Alerts are now displayed in a column and aligned to the right.
+#alerts {
+  z-index: 1080; // Higher than Bootstrap tooltips.
+  flex-direction: column;
+  align-items: flex-end;
+  display: flex;
+
+  .alert {
+    display: inline-block;
+  
+    a { @extend .alert-link; }
+  }
+}

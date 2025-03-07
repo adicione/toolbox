@@ -1,6 +1,6 @@
 # Toolbox
 
-A set of ruby, JS and css tools we normally use across projects.
+A set of Ruby, JS and CSS tools we normally use across projects.
 
 # Installation
 
@@ -33,7 +33,7 @@ TODO : Add following validations.
     validateBrPlate()
     validateDate() // We nave a very nice regex for this one
 
-# Bootstrap Components
+# Toolbox / Bootstrap Components and Styles
 
 Needs sass to work properly:
 
@@ -41,8 +41,23 @@ Needs sass to work properly:
 
 You can include all components by:
 
-    @use "bootstrap.components" as bc;
-    @use "bootstrap.icons" as bi;
+    @forward "toolbox";
+
+# Helpers
+
+## Confirmation Link
+
+Styled modal for delete confirmation link:
+
+    link_to_confirmation(link_text, path, **options)
+
+As options, it accepts:
+
+    class: Styles and etc...
+    btn_text: Text for action link inside the modal, default is "Apagar".
+    confirm: Confirmation text, default is "Olha lá ein... Certeza?".
+    id: Custom modal ID, as default, creates a random "confirmation-modal" ID.
+
 
 
 
