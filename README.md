@@ -57,6 +57,7 @@ As options, it accepts:
     btn_text: Text for action link inside the modal, default is "Apagar".
     confirm: Confirmation text, default is "Olha lá ein... Certeza?".
     id: Custom modal ID, as default, creates a random "confirmation-modal" ID.
+    delete: Default true, can be set as false to use as normal dialog.
 
 
 
