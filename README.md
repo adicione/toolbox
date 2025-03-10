@@ -53,73 +53,8 @@ Styled modal for delete confirmation link:
 
 As options, it accepts:
 
-    class: Styles and etc...
-    btn_text: Text for action link inside the modal, default is "Apagar".
-    confirm: Confirmation text, default is "Olha lá ein... Certeza?".
-    id: Custom modal ID, as default, creates a random "confirmation-modal" ID.
-    delete: Default true, can be set as false to use as normal dialog.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Overlay
-
-Add the flash helpers to `application_helper.rb`:
-
-    include Toolbox::Helpers::Overlay
-
-And add the overlay into the `body` tag of your html layout:
-
-    <%= overlay %>
-
-### Flash messages
-
-In order to receive turbo flash, you will need to add a user's personal channel.
-
-    <%= turbo_stream_from(dom_id(current_user, :personal_channel)) if current_user %>
-
-Optionally, you can use the Toolbox flash styles importing it to your application.scss:
-
-    @import "superstyles/flashes";
-
-With the Toolbox flash styles we have `primary`, `success`, `warning` and `danger` available as flash types colored as `blue`, `green`, `yellow` and `red`.
-
-# View helper methods
-
-Add the view helpers to your `application_helper.rb` file:
-
-    include Toolbox::Helpers::FlashHelper
-
-### Icons
-
-Renders material icons and simplifies the `back` and `forward` icons to the right positioned ones.
-
-    toolbox_icon("icon-name")
-
-### Card divider
-
-Generates an `hr` tag to divide card objects.
-
-Adds the "mobile" class to the `hr` tag if the object is the first in the collection.
-
-The "mobile" class is typically used to style the `hr` for visibility in mobile layouts, while it remains hidden in non-mobile (desktop) applications.
-
-This method is particularly useful in "row" and "column" layouts.
-
-The method needs to be called from within the collection's element and pass the element as a variable.
-
-    toolbox_card_divider(object)
+    class: # Styles and etc...
+    btn_text: #Text for action link inside the modal, default is "Apagar".
+    confirm: #Confirmation text, default is "Olha lá ein... Certeza?".
+    id: # Custom modal ID, as default, creates a random "confirmation-modal" ID.
+    delete: # Default true, can be set as false to use as normal dialog.
