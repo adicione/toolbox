@@ -1,10 +1,5 @@
 module Toolbox
-  module MainHelper
-    # TODO : Add delete: true / false option, to use as confirmation dialog.
-    def link_to_confirmation(link_text, path, **options)
-      render Toolbox::ConfirmationComponent.new(link_text, path, **options)
-    end
-
+  module SuperHelper
     # include ActionView::Context
 
     # A base for turbo includes. (modals, flash and etc...)

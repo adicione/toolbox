@@ -31,7 +31,25 @@ TODO : Add following validations.
     validateCpfCnpj()
     validateCep()
     validateBrPlate()
-    validateDate() // We nave a very nice regex for this one
+    validateDate() // We nave a very nice regex for this one.
+
+# Ruby Validation
+
+Located in app/validators.
+
+You can call the class:
+
+    Validator.cpf(input)
+    Validator.email(input)
+    Validator.brazilian_phone(input)
+
+Or in your rails model:
+
+    class User < ApplicationRecord
+        validates :cpf, method: :cpf
+        validates :email, method: :email
+        validates :phone, method: { with: :brazilian_phone }
+    end
 
 # Toolbox / Bootstrap Components and Styles
 
@@ -45,16 +63,80 @@ You can include all components by:
 
 # Helpers
 
-## Confirmation Link
+## - Overlay and alerts
 
-Styled modal for delete confirmation link:
+It automatically handles alerts on refresh and gives you a base for turbo includes like modals and etc...
 
-    link_to_confirmation(link_text, path, **options)
+Add the overlay helper at your main template.
 
-As options, it accepts:
+    <%= overlay %>
 
-    class: # Styles and etc...
-    btn_text: #Text for action link inside the modal, default is "Apagar".
-    confirm: #Confirmation text, default is "Olha lá ein... Certeza?".
-    id: # Custom modal ID, as default, creates a random "confirmation-modal" ID.
-    delete: # Default true, can be set as false to use as normal dialog.
+For turbo alerts, we need the "flash.now" added to your controller method:
+
+    flash.now[:warning] = "Your alert"
+
+Add the turbo alerts helper to your turbo_stream view:
+
+    <%= turbo_alerts %>
+
+Or render from your controller with or without a desired status:
+
+    render turbo_stream: helpers.turbo_alerts, status: :forbidden
+
+## - Modal
+
+A Bootstrap modal helper that follows all bootstrap configs:
+
+    render Toolbox::ModalComponent.new(**options)
+
+### Options:
+
+Custom ID.
+
+    id: nil
+
+A non-dismissible modal will only close when a designated button is present.
+
+    dismissable: true
+
+Prints a close button if header is available.
+
+    close_button: false
+
+Determines the initial moda's state.
+
+    hidden: true
+
+If true, removes the modal from the DOM upon closing.
+
+    persistent: false
+
+Closes other modals when opened.
+
+    selfish: false
+
+Applies Bootstrap modal size and center classes.
+
+    size: nil (Bootstrap default size.)
+    centered: "modal-dialog-centered"
+
+Allows replacing the ‘modal-content’ wrapper with another tag.
+
+    custom_content: false
+
+When custom_content: true, will need to respect Bootstrap modal structure, no ViewComponent::Slots allowed.
+
+    <div class="modal-content">
+        <div class="modal-header">
+            <h1 class="modal-title fs-5">Title here</h1>
+        </div>
+
+        <div class="modal-body">
+            Body content here...
+        </div>
+
+        <div class="modal-footer">
+            Footer here...
+        </div>
+    </div>
+

@@ -19,6 +19,8 @@ export default class extends Controller {
     this.element.addEventListener('hidden.bs.modal', event => {
       if (this.element.dataset.persistent === "false") { this.element.remove() }
     })
+
+    document.addEventListener("shown.bs.modal", this.focusModal.bind(this))
   }
 
   disconnect() {
@@ -27,7 +29,7 @@ export default class extends Controller {
     this.modalInstance.dispose()
   }
 
-  hodeModalBuddies() {
+  hideModalBuddies() {
     const modalBuddies = document.querySelectorAll(".modal.show") // Open modals.
 
     modalBuddies.forEach(modal => {
@@ -37,5 +39,9 @@ export default class extends Controller {
         if (bsModal) bsModal.hide()
       }
     })
+  }
+
+  focusModal() {
+    this.element.focus() // Bootstrap does not respect HTML focus after "shown.bs.modal".
   }
 }
