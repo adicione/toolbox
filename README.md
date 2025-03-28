@@ -8,30 +8,50 @@ Add to the application's Gemfile and `bundle` it up.
 
     gem "toolbox", git: "https://github.com/adicione/toolbox.git"
 
-# Stimulus Mask Controller
-
-Wrap the maskables with `data-controller="masking"` and add the desired mask to the class of eash input.
-
-The available masks are `mask-date`, `mask-br-phone`, `mask-cpf`, `mask-cnpj`, `mask-brl`, `mask-usd`, `mask-cep` and `mask-plate`.
-
 # Stimulus Validation Controller
 
-Wrap the form with `data-controller="validation"` and add the desired validation to the class of eash input.
+Wrap the form with `data-controller="validation"` and add the desired validation to the class of each input.
 
-The available validations are `validate-cpf`, `validate-email` and `validate-br-phone`.
+The available validations are:
+
+    validate-only-letters // No spaces.
+    validate-name // Only leters, accept spaces.
+    validate-cpf
+    validate-email
+    validate-br-phone
+    validate-date
+
+There is no need to call the mask method if the corresponding validate is called.
 
 In addition to validations, you can also add `required: true` to require it.
 
-TODO : Add following validations.
+TODO : Create following validations.
 
-    validateNumbers()
-    validateLetters()
-    validateAlphanumeric()
+    validateOnlyNumbers()
+    validateAlphanumeric() // No special chars.
     validateCnpj()
     validateCpfCnpj()
     validateCep()
     validateBrPlate()
-    validateDate() // We nave a very nice regex for this one.
+
+# Stimulus Mask Controller
+
+Wrap the maskables with `data-controller="masking"` and add the desired mask to the class of eash input.
+
+If you are already validating the field, there is no need to use masking.
+
+The available masks are:
+
+    mask-only-letters
+    mask-name
+    mask-date
+    mask-br-phone
+    mask-cpf
+    mask-cnpj
+    mask-brl
+    mask-usd
+    mask-cep
+    mask-plate
 
 # Ruby Validation
 
@@ -39,16 +59,15 @@ Located in app/validators.
 
 You can call the class:
 
+    Validator.only_letters(input)
     Validator.cpf(input)
     Validator.email(input)
     Validator.brazilian_phone(input)
 
-Or in your rails model:
+In your rails model to add errors:
 
     class User < ApplicationRecord
-        validates :cpf, method: :cpf
-        validates :email, method: :email
-        validates :phone, method: { with: :brazilian_phone }
+        validates :name, only_letters: true, allow_blank: true
     end
 
 # Toolbox / Bootstrap Components and Styles
@@ -62,6 +81,10 @@ You can include all components by:
     @forward "toolbox";
 
 # Helpers
+
+Add to ApplicationHelper:
+
+    include Toolbox::SuperHelper
 
 ## - Overlay and alerts
 
@@ -140,3 +163,15 @@ When custom_content: true, will need to respect Bootstrap modal structure, no Vi
         </div>
     </div>
 
+## - Confirmation link
+
+Serves as a warning before important actions. (delete, move, etc...)
+
+    link_to_confirmation(content, destination, **options)
+
+### Options:
+
+    class: # Link style.
+    confirmation: # Confirmation text. ("Você tem certeza?")
+    btn_text: # Confirm button text. ("Seguir")
+    turbo_method: # Methods :get, :post, etc... (:delete)

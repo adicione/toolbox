@@ -8,40 +8,54 @@ export default class extends Controller {
 
     this.modalInstance = new bootstrap.Modal(this.element)
 
-    if (this.element.dataset.selfish === "true") {
-      this.closeOtherModals()
-    }
+    this.showTurboModal()
+    this.hideOtherModals()
 
-    if (this.element.dataset.hidden === "false" && window.getComputedStyle(this.element).display === "none") {
-      this.modalInstance.show() // Normally from turbo-stream.
-    }
-
-    this.element.addEventListener('hidden.bs.modal', event => {
-      if (this.element.dataset.persistent === "false") { this.element.remove() }
+    this.element.addEventListener("hidden.bs.modal", event => {
+      this.removeModal()
     })
 
-    document.addEventListener("shown.bs.modal", this.focusModal.bind(this))
+    document.addEventListener("shown.bs.modal", event => {
+      this.focusModal()
+    })
   }
 
   disconnect() {
     console.log("Modal controller disconnected.")
 
     this.modalInstance.dispose()
+    this.element.removeEventListener("hidden.bs.modal", this.removeModal)
+
+    document.removeEventListener("shown.bs.modal", this.focusModal)
   }
 
-  hideModalBuddies() {
-    const modalBuddies = document.querySelectorAll(".modal.show") // Open modals.
-
-    modalBuddies.forEach(modal => {
-      if (modal !== this.element) { // Exclude the current modal.
-        let bsModal = bootstrap.Modal.getInstance(modal)
-
-        if (bsModal) bsModal.hide()
-      }
-    })
+  showTurboModal() {
+    if (this.element.dataset.hidden === "false" && window.getComputedStyle(this.element).display === "none") {
+      this.modalInstance.show()
+    }
   }
 
   focusModal() {
-    this.element.focus() // Bootstrap does not respect HTML focus after "shown.bs.modal".
+    this.element.focus()
+  }
+
+  hideOtherModals() {
+    if (this.element.dataset.selfish === "false") return
+
+    const modalBuddies = document.querySelectorAll(".modal.show") // Open modals.
+
+    modalBuddies.forEach(modal => {
+      if (modal !== this.element) bootstrap.Modal.getInstance(modal)?.hide()
+    })
+  }
+
+  hideModal() {
+    this.modalInstance.hide()
+  }
+
+  removeModal() {
+    if (this.element.dataset.persistent === "false") {
+      this.element.remove() // Removes non-persistent.
+    }
   }
 }

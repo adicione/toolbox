@@ -68,7 +68,7 @@ class Toolbox::ModalComponent < ViewComponent::Base
         controller: "modal",
         hidden: @hidden,
         persistent: @persistent,
-        lonely: @lonely
+        selfish: @selfish
       }
     }
 

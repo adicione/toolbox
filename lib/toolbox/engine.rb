@@ -1,5 +1,7 @@
-module Toolbbox
+module Toolbox
   class Engine < ::Rails::Engine
+    isolate_namespace Toolbox
+  
     initializer "toolbox.stimulus_controllers" do |app|
       if app.config.respond_to? :assets
         app.config.assets.paths << root.join("app", "javascript") # Controller paths.
@@ -17,10 +19,18 @@ module Toolbbox
       end
     end
 
-    config.to_prepare do
-      Dir.glob(Rails.root.join("app/helpers/**/*.rb")).each do |file|
-        require_dependency file # Auto load all helpers.
+    initializer "toolbox.append_routes" do |app|
+      app.routes.append do
+        mount Toolbox::Engine, at: "/toolbox"
       end
     end
+
+    # Maybe this is not necessary.
+    #
+    # config.to_prepare do
+    #   Dir.glob(Rails.root.join("app/helpers/**/*.rb")).each do |file|
+    #     require_dependency file # Auto load all helpers.
+    #   end
+    # end
   end
 end

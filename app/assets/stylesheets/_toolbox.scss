@@ -1,16 +1,36 @@
-@forward "font-awesome" with ($fa-font-path: "font-awesome");
-@forward "bootstrap";
+@use "setup" as *;
 
 // Small shaddow arround the modal.
 .modal-content { box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
 
-// No funny outline on focus.
 .input-group {
+  // Removes the outline and box-shadow from the input.
   input {
     outline: none !important;
     box-shadow: none !important;
-    border-color: var(--bs-border-color) !important;
   }
+
+  // Default border.
+  border: 1px solid var(--bs-border-color);
+  border-radius: var(--bs-border-radius);
+
+  &.input-group-lg { border-radius: var(--bs-border-radius-lg); }
+  &.input-group-sm { border-radius: var(--bs-border-radius-sm); }
+
+  // No inside borders besides the ones separating children.
+  * { border: none; }
+  > *:not(:first-child) { border-left: 1px solid var(--bs-border-color); }
+
+  // Focus default bootstrap behavior and invalid state.
+  &:focus-within {
+    border-color: #86b7fe;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+
+    &:has(.is-invalid) { box-shadow: 0 0 0 0.25rem rgba(225, 83, 97, 0.25); }
+  }
+
+  // Invalid state.
+  &:has(.is-invalid) { border-color: var(--bs-danger); }
 }
 
 // Adds spacing between icon and text automatically.

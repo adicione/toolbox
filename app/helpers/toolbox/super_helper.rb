@@ -17,6 +17,12 @@ module Toolbox
       turbo_stream.append "alerts", alerts
     end
 
+    def link_to_confirmation(content, destination, **options)
+      link_style = options.delete(:class)
+
+      link_to content, toolbox.confirmation_path(destination, **options), class: link_style, data: { turbo_stream: true }
+    end
+
     private
 
     def alerts

@@ -1,0 +1,14 @@
+<%= turbo_stream.append "overlay" do %>
+  <%= render Toolbox::ModalComponent.new size: "modal-sm", hidden: false do |modal| %>
+    <% modal.with_header do %>
+      <%= content_tag :span, "Atenção!", class: "text-danger" %>
+    <% end %>
+
+    <p class="text-secondary"><%= @confirmation %></p>
+
+    <% modal.with_footer do %>
+      <%= link_to @btn_text, @destination, class: "btn btn-success", data: { turbo_method: @turbo_method, action: "modal#hideModal" } %>
+      <%= link_to "Voltar", "#", class: "btn btn-warning", data: { bs_dismiss: "modal" } %>
+    <% end %>
+  <% end %>
+<% end %>

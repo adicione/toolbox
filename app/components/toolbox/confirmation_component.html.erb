@@ -1,0 +1,8 @@
+<%= modal_link %>
+
+<%= render Toolbox::ModalComponent.new size: "modal-sm", persistent: true, id: @id do %>
+  <h4 class="text-danger mb-4"><%= @confirm %></h4>
+
+  <%= delete_btn %>
+  <%= cancel_btn %>
+<% end %>

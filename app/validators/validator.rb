@@ -1,4 +1,24 @@
 class Validator
+  def self.name(name)
+    return false unless name.is_a?(String)
+
+    regex = /\A[a-zA-Z\s'.-]{2,50}\z/ # Letters, apostrophes, hyphens, dots, 2-50 chars.
+
+    name.match?(regex)
+  end
+
+  def self.date(date, format: "%d/%m/%Y")
+    return true if date.blank?
+
+    return true if date.is_a?(Date)
+  
+    Date.strptime(date, format)
+
+    true
+  rescue ArgumentError
+    false
+  end
+
   def self.cpf(cpf)
     cpf = cpf.gsub(/\D/, "") # Remove non-numeric characters.
 
