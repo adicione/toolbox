@@ -84,5 +84,5 @@ class Toolbox::ModalComponent < ViewComponent::Base
     return unless @dismissable && @close_button
 
     content_tag :button, "", class: "btn-close", data: { bs_dismiss: "modal" }, aria: { label: "Close" }
-  end  
+  end
 end

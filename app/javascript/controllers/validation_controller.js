@@ -103,29 +103,6 @@ export default class extends Controller {
 
   // Methods.
 
-  validateDate(field) {
-    const date = field.value.replace(/[^0-9/]/g, "").slice(0, 10)
-
-    field.value = date // Update field value.
-
-    if (date.length === 0) return true // Empty date is valid.
-
-    const dateParts = date.split("/")
-
-    if (dateParts.length !== 3) return false // Needs 3 parts.
-
-    const [ day, month, year ] = dateParts
-
-    if (day < 1 || day > 31 || day.length !== 2) return false // Valid day.
-    if (month < 1 || month > 12 || month.length !== 2) return false // Valid month.
-    if (year.length !== 4) return false // Valid year.
-
-    const formattedDate = `${ year }-${ month }-${ day }`
-    const dateObject = new Date(formattedDate)
-
-    return !isNaN(dateObject.getTime()) // Check if it's a valid date.
-  }
-
   validateEmail(field) {
     const emailRegex = /^(?:[a-z0-9!#$%&"*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&"*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i
     const email = field.value
@@ -150,6 +127,26 @@ export default class extends Controller {
   }
 
   // Tested...
+
+  validateDate(field) {
+    this.maskingController.maskInput(field, this.maskingController.maskDate.call(this.maskingController, field.value))
+
+    const date = field.value.replace(/[^0-9/]/g, "").slice(0, 10)
+    const dateParts = date.split("/")
+
+    if (dateParts.length !== 3) return false // Needs 3 parts.
+
+    const [ day, month, year ] = dateParts
+
+    if (day < 1 || day > 31 || day.length !== 2) return false // Valid day.
+    if (month < 1 || month > 12 || month.length !== 2) return false // Valid month.
+    if (year.length !== 4) return false // Valid year.
+
+    const formattedDate = `${ year }-${ month }-${ day }`
+    const dateObject = new Date(formattedDate)
+
+    return !isNaN(dateObject.getTime()) // Check if it's a valid date.
+  }
 
   validateName(field) {
     this.maskingController.maskInput(field, this.maskingController.maskName.call(this.maskingController, field.value))

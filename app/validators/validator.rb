@@ -7,15 +7,10 @@ class Validator
     name.match?(regex)
   end
 
+  # Does not work as model validator.
   def self.date(date, format: "%d/%m/%Y")
-    return true if date.blank?
-
-    return true if date.is_a?(Date)
-  
     Date.strptime(date, format)
-
-    true
-  rescue ArgumentError
+  rescue ArgumentError, TypeError
     false
   end
 

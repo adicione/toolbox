@@ -1,7 +1,7 @@
 module Toolbox
   class Engine < ::Rails::Engine
     isolate_namespace Toolbox
-  
+
     initializer "toolbox.stimulus_controllers" do |app|
       if app.config.respond_to? :assets
         app.config.assets.paths << root.join("app", "javascript") # Controller paths.
