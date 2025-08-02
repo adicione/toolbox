@@ -112,6 +112,8 @@ A Bootstrap modal helper that follows all bootstrap configs:
 
     render Toolbox::ModalComponent.new(**options)
 
+    turbo_close_modal(id) # Closes modals from turbo requests.
+
 ### Options:
 
 Custom ID.

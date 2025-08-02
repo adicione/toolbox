@@ -2,7 +2,7 @@ class Validator
   def self.name(name)
     return false unless name.is_a?(String)
 
-    regex = /\A[a-zA-Z\s'.-]{2,50}\z/ # Letters, apostrophes, hyphens, dots, 2-50 chars.
+    regex = /\A[\p{L}\s'.-]{2,100}\z/u # Letters, apostrophes, hyphens, dots, 2-50 chars.
 
     name.match?(regex)
   end

@@ -1,10 +1,7 @@
 # frozen_string_literal: true
 
 class Toolbox::ModalComponent < ViewComponent::Base
-  renders_one :header
-  renders_one :footer
-
-  def initialize(id: nil, dismissable: true, close_button: false, hidden: true, persistent: false, selfish: false, size: nil, centered: "modal-dialog-centered", custom_content: false)
+  def initialize(id: nil, dismissable: true, close_button: false, hidden: true, persistent: false, selfish: false, size: nil, centered: "modal-dialog-centered")
     @id = id
     @dismissable = dismissable
     @close_button = close_button
@@ -14,48 +11,43 @@ class Toolbox::ModalComponent < ViewComponent::Base
 
     @size = size # Includes fullscreen.
     @centered = centered
-    @custom_content = custom_content
   end
 
   def modal_dialog
     classes = [ "modal-dialog", @size, @centered ].compact.join " "
 
     content_tag :div, class: classes do
-      unless @custom_content
-        content_tag :div, class: "modal-content" do
-          safe_join [ modal_header, modal_content, modal_footer ].compact
-        end
-      else
-        modal_content
+      content_tag :div, class: "modal-content" do
+        content
       end
     end
   end
 
-  def modal_header
-    return unless header?
+  # def modal_content
+  #   return unless content.present?
 
-    title = content_tag :h1, header, class: "modal-title fs-5"
+  #   if @custom_content
+  #     content
+  #   else
+  #     content_tag :div, content, class: "modal-body pb-0"
+  #   end
+  # end
 
-    content_tag :div, class: "modal-header" do
-      safe_join [ title, close_button ].compact
-    end
-  end
+  # def modal_header
+  #   return unless header?
 
-  def modal_content
-    return unless content.present?
+  #   title = content_tag :h1, header, class: "modal-title fs-5"
 
-    if @custom_content
-      content
-    else
-      content_tag :div, content, class: "modal-body pb-0"
-    end
-  end
+  #   content_tag :div, class: "modal-header" do
+  #     safe_join [ title, close_button ].compact
+  #   end
+  # end
 
-  def modal_footer
-    return unless footer?
+  # def modal_footer
+  #   return unless footer?
 
-    content_tag :div, footer.to_s.html_safe, class: "modal-footer"
-  end
+  #   content_tag :div, footer.to_s.html_safe, class: "modal-footer"
+  # end
 
   private
 

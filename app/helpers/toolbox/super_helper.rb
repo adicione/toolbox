@@ -17,6 +17,29 @@ module Toolbox
       turbo_stream.append "alerts", alerts
     end
 
+    def turbo_close_modal(id)
+      turbo_stream.append id do
+        tag.script do
+          <<~JS.html_safe
+            const e = document.getElementById("#{id}")
+
+            if (e) {
+              const c = Stimulus.getControllerForElementAndIdentifier(e, "modal")
+
+              if (c) {
+                console.log("Closing modal.")
+                c.hideModal()
+              } else {
+                console.warn("Modal controller not found.")
+              }
+            } else {
+              console.warn("Modal element not found.")
+            }
+          JS
+        end
+      end
+    end
+
     def link_to_confirmation(content, destination, **options)
       link_style = options.delete(:class)
 

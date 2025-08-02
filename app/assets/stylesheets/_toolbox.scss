@@ -1,7 +1,8 @@
 @use "setup" as *;
 
-// Small shaddow arround the modal.
-.modal-content { box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+.modal-content { box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); } // Small shadow around the modal.
+
+.modal-body { padding-bottom: 0; }
 
 .input-group {
   // Removes the outline and box-shadow from the input.
