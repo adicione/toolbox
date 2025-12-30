@@ -11,8 +11,6 @@ export default class extends Controller {
     this.showTurboModal()
     this.hideOtherModals()
 
-    console.log("🚨 modalInstance:", this.modalInstance)
-
     this.element.addEventListener("hidden.bs.modal", event => {
       this.removeModal()
     })

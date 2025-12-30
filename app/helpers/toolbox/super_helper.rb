@@ -18,23 +18,18 @@ module Toolbox
     end
 
     def turbo_close_modal(id)
-      turbo_stream.append id do
-        tag.script do
+      turbo_stream.append "overlay" do
+        tag.script id: "close-modal", type: "module" do
           <<~JS.html_safe
-            const e = document.getElementById("#{id}")
+            const element = document.getElementById("#{ id }")
 
-            if (e) {
-              const c = Stimulus.getControllerForElementAndIdentifier(e, "modal")
+            if (element) {
+              const controller = Stimulus.getControllerForElementAndIdentifier(element, "modal")
 
-              if (c) {
-                console.log("Closing modal.")
-                c.hideModal()
-              } else {
-                console.warn("Modal controller not found.")
-              }
-            } else {
-              console.warn("Modal element not found.")
+              if (controller) { controller.hideModal() }
             }
+
+            document.getElementById("close-modal").remove()
           JS
         end
       end

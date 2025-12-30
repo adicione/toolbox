@@ -7,13 +7,6 @@ class Validator
     name.match?(regex)
   end
 
-  # Does not work as model validator.
-  def self.date(date, format: "%d/%m/%Y")
-    Date.strptime(date, format)
-  rescue ArgumentError, TypeError
-    false
-  end
-
   def self.cpf(cpf)
     cpf = cpf.gsub(/\D/, "") # Remove non-numeric characters.
 
