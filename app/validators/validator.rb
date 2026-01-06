@@ -7,6 +7,18 @@ class Validator
     name.match?(regex)
   end
 
+  # Date of birth will work only on create...
+
+  def self.date_of_birth(date)
+    return false unless date.is_a?(Date)
+
+    today = Date.today
+    age = today.year - date.year
+    age -= 1 if today < date.next_year(age)
+
+    age >= 16 && age <= 100
+  end
+
   def self.cpf(cpf)
     cpf = cpf.gsub(/\D/, "") # Remove non-numeric characters.
 
