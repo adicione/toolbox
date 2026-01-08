@@ -1,8 +1,6 @@
 module Toolbox
   class HelpersController < ApplicationController
     # skip_after_action :verify_authorized if defined?(Pundit) # Pundit policy check.
-    skip_authorization
-    skip_policy_scope
 
     def confirmation
       @destination = params[:destination] || "#"
