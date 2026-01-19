@@ -75,7 +75,7 @@ class Validator
     true
   end
 
-  def self.brazilian_phone(phone)
+  def self.br_phone(phone)
     phone = phone.gsub(/[^a-zA-Z0-9]/, "")
 
     return false if phone.match?(/[a-zA-Z]/) # Only numbers.
