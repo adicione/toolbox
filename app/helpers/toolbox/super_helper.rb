@@ -52,7 +52,7 @@ module Toolbox
     end
 
     def alert(key, message)
-      content_tag :div, message.html_safe, class: "alert show fade alert-#{ key }", role: "alert", data: { bs_dismiss: "alert", controller: "alert" }
+      content_tag :div, message.to_s.html_safe, class: "alert show fade alert-#{ key }", role: "alert", data: { bs_dismiss: "alert", controller: "alert" }
     end
   end
 end

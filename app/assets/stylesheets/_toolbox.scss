@@ -59,3 +59,14 @@
     a { @extend .alert-link; }
   }
 }
+
+.turbo-progress-bar {
+  height: 0.3rem;
+  background-color: var(--bs-warning);
+  transition: width 0.2s ease-out, opacity 0.4s ease-in;
+}
+
+// Auto space between elements
+// inside a toolbar.
+.btn-toolbar { @extend .gap-2 }
+
