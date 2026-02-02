@@ -19,7 +19,7 @@ module Toolbox
 
     def turbo_close_modal(id)
       turbo_stream.append "overlay" do
-        tag.script id: "close-modal", type: "module" do
+        tag.script id: "#{ id }-close-modal", type: "module" do
           <<~JS.html_safe
             const element = document.getElementById("#{ id }")
 
@@ -29,7 +29,7 @@ module Toolbox
               if (controller) { controller.hideModal() }
             }
 
-            document.getElementById("close-modal").remove()
+            document.getElementById("#{ id }-close-modal").remove()
           JS
         end
       end
