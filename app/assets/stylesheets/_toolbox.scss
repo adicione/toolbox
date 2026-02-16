@@ -1,8 +1,6 @@
 @use "setup" as *;
 
-.modal-content { box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); } // Small shadow around the modal.
-
-.modal-body { padding-bottom: 0; }
+.modal-content { box-shadow: 0 0 2rem rgba(0, 0, 0, 0.3) } // Small shadow around the modal.
 
 .input-group {
   // Removes the outline and box-shadow from the input.
@@ -48,13 +46,14 @@
 
 // Alerts are now displayed in a column and aligned to the right.
 #alerts {
+  @extend .position-fixed, .top-0, .end-0, .d-flex, .flex-column, .align-items-end;
+
   z-index: 1080; // Higher than Bootstrap tooltips.
-  flex-direction: column;
-  align-items: flex-end;
-  display: flex;
 
   .alert {
-    display: inline-block;
+    @extend .d-inline-block;
+
+    // @extend .mb-0, .mt-3, .me-3;
   
     a { @extend .alert-link; }
   }

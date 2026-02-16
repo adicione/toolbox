@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Toolbox::ModalComponent < ViewComponent::Base
-  def initialize(id: nil, dismissable: true, close_button: false, hidden: true, persistent: false, selfish: false, size: nil, centered: "modal-dialog-centered")
+  def initialize(id: nil, dismissable: true, close_button: false, hidden: true, persistent: false, selfish: false, size: nil, vertically_centered: true)
     @id = id
     @dismissable = dismissable
     @close_button = close_button
@@ -10,11 +10,13 @@ class Toolbox::ModalComponent < ViewComponent::Base
     @selfish = selfish # Will close other modals when opening.
 
     @size = size # Includes fullscreen.
-    @centered = centered
+    @vertically_centered = vertically_centered
   end
 
+  # data-bs-backdrop="static"
+
   def modal_dialog
-    classes = [ "modal-dialog", @size, @centered ].compact.join " "
+    classes = [ "modal-dialog", @size, vertically_centered ].compact.join " "
 
     content_tag :div, class: classes do
       content_tag :div, class: "modal-content" do
@@ -51,6 +53,10 @@ class Toolbox::ModalComponent < ViewComponent::Base
 
   private
 
+  def vertically_centered
+    "modal-dialog-centered" if @vertically_centered
+  end
+
   def modal_options
     options = {
       id: @id,
@@ -70,11 +76,5 @@ class Toolbox::ModalComponent < ViewComponent::Base
     end
 
     options.compact # Remove nil values.
-  end
-
-  def close_button
-    return unless @dismissable && @close_button
-
-    content_tag :button, "", class: "btn-close", data: { bs_dismiss: "modal" }, aria: { label: "Close" }
   end
 end
